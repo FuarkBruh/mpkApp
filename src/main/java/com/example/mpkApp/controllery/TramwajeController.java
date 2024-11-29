@@ -2,6 +2,7 @@ package com.example.mpkApp.controllery;
 
 import com.example.mpkApp.modele.TramwajeModel;
 import com.example.mpkApp.serwisy.TramwajeSerwis;
+import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

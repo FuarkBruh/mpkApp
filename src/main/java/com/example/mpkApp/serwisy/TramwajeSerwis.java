@@ -35,12 +35,7 @@ public class TramwajeSerwis {
 
     @Transactional
     public void newTramwaj(TramwajeModel tramwaj) {
-        if(tramwajeRepo.existsById(tramwaj.getId())) {
-            throw new RuntimeException("Tramwaj with ID " + tramwaj.getId() + " already exists");
-        }
-        else {
-            tramwajeRepo.save(tramwaj);
-        }
+        tramwajeRepo.save(tramwaj);
     }
 
     @Transactional
@@ -52,8 +47,9 @@ public class TramwajeSerwis {
         else {
             TramwajeModel tramwaj = optionalTramwaj.get();
             tramwaj.setModel(updatedTramwaj.getModel());
+            tramwaj.setNumerBoczny(updatedTramwaj.getNumerBoczny());
             tramwaj.setPojemnosc(updatedTramwaj.getPojemnosc());
-            tramwaj.setRok_produkcji(updatedTramwaj.getRok_produkcji());
+            tramwaj.setRokProdukcji(updatedTramwaj.getRokProdukcji());
             tramwaj.setUwagi(updatedTramwaj.getUwagi());
             tramwajeRepo.save(tramwaj);
         }

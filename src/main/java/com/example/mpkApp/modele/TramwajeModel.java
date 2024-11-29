@@ -1,30 +1,31 @@
 package com.example.mpkApp.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "tramwaje")
 public class TramwajeModel {
     @Id
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tramwaj_id_gen")
+    @SequenceGenerator(name = "tramwaj_id_gen", sequenceName = "tramwaje_id_seq", allocationSize = 1)
     private Integer id;
 
-    @NotNull(message = "Can't be null")
+    @NotNull(message = "model Can't be null")
     private String model;
+
+    @NotNull(message = "numerBoczny Can't be null")
+    private String numerBoczny;
 
     @Min(value = 1900, message = "Invalid year of production")
     @Max(value = 2100, message = "Invalid year of production")
     @NotNull(message = "Can't be null")
-    private Integer rok_produkcji;
+    private Integer rokProdukcji;
 
     @Min(value = 0, message = "Invalid pojemnosc")
-    @NotNull(message = "Can't be null")
+    @NotNull(message = "pojemnosc Can't be null")
     private Integer pojemnosc;
 
     private String uwagi;
@@ -35,7 +36,7 @@ public class TramwajeModel {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,12 +48,20 @@ public class TramwajeModel {
         this.model = model;
     }
 
-    public Integer getRok_produkcji() {
-        return rok_produkcji;
+    public Integer getRokProdukcji() {
+        return rokProdukcji;
     }
 
-    public void setRok_produkcji(int rok_produkcji) {
-        this.rok_produkcji = rok_produkcji;
+    public void setRokProdukcji(int rokProdukcji) {
+        this.rokProdukcji = rokProdukcji;
+    }
+
+    public String getNumerBoczny() {
+        return numerBoczny;
+    }
+
+    public void setNumerBoczny(String numerBoczny) {
+        this.numerBoczny = numerBoczny;
     }
 
     public Integer getPojemnosc() {

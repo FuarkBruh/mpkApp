@@ -2,8 +2,10 @@ package com.example.mpkApp.modele;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "linie")
 public class LinieModel {
     @Id
     private int id;
