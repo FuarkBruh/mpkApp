@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,8 +18,33 @@ public class TramwajeSerwis {
         this.tramwajeRepo = tramwajeRepo;
     }
 
+    public List<TramwajeModel> findAllTramwaje() {
+        if(tramwajeRepo.findAll().isEmpty()) {
+            throw new RuntimeException("No tramwaje found");
+        }
+        else {
+            tramwajeRepo.findAll();
+            return tramwajeRepo.findAll();
+        }
+    }
+
+    public TramwajeModel findTramwajById(int id) {
+        return tramwajeRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tramwaj with ID " + id + " not found"));
+    }
+
     @Transactional
-    public void updateTramwaj(int id, TramwajeModel updatedTramwaj) {
+    public void newTramwaj(TramwajeModel tramwaj) {
+        if(tramwajeRepo.existsById(tramwaj.getId())) {
+            throw new RuntimeException("Tramwaj with ID " + tramwaj.getId() + " already exists");
+        }
+        else {
+            tramwajeRepo.save(tramwaj);
+        }
+    }
+
+    @Transactional
+    public void updateTramwaj(Integer id, TramwajeModel updatedTramwaj) {
         Optional<TramwajeModel> optionalTramwaj = tramwajeRepo.findById(id);
         if (optionalTramwaj.isEmpty()) {
             throw new RuntimeException("Tramwaj not found");
@@ -41,10 +67,5 @@ public class TramwajeSerwis {
         else {
             throw new RuntimeException("Tramwaj not found");
         }
-    }
-
-    @Transactional
-    public void newTramwaj(TramwajeModel tramwaj) {
-        tramwajeRepo.save(tramwaj);
     }
 }
