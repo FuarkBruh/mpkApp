@@ -25,10 +25,10 @@ public class OpinieSerwis {
         }
         else {
             OpinieModel opinia = optionalOpinia.get();
-            opinia.setNumer_boczny(updatedOpinia.getNumer_boczny());
+            opinia.setNumerBoczny(updatedOpinia.getNumerBoczny());
             opinia.setGodzina(updatedOpinia.getGodzina());
-            opinia.setNumer_linii(updatedOpinia.getNumer_linii());
-            opinia.setTresc_opinii(updatedOpinia.getTresc_opinii());
+            opinia.setNumerLinii(updatedOpinia.getNumerLinii());
+            opinia.setTrescOpinii(updatedOpinia.getTrescOpinii());
             opinieRepo.save(opinia);
         }
     }

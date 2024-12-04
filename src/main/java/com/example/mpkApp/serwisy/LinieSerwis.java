@@ -26,7 +26,7 @@ public class LinieSerwis {
         else {
             LinieModel linia = optionalLinia.get();
             linia.setNumer(updatedLinia.getNumer());
-            linia.setCalkowity_czas_przejazdu(updatedLinia.getCalkowity_czas_przejazdu());
+            linia.setCalkowityCzasPrzejazdu(updatedLinia.getCalkowityCzasPrzejazdu());
             linieRepo.save(linia);
         }
     }

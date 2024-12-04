@@ -17,12 +17,12 @@ public class TramwajeModel {
     private String model;
 
     @NotNull(message = "numerBoczny Can't be null")
-    private String numer_boczny;
+    private String numerBoczny;
 
     @Min(value = 1900, message = "Invalid year of production")
     @Max(value = 2100, message = "Invalid year of production")
     @NotNull(message = "Can't be null")
-    private Integer rok_produkcji;
+    private Integer rokProdukcji;
 
     @Min(value = 0, message = "Invalid pojemnosc")
     @NotNull(message = "pojemnosc Can't be null")
@@ -48,20 +48,20 @@ public class TramwajeModel {
         this.model = model;
     }
 
-    public Integer getRok_produkcji() {
-        return rok_produkcji;
+    public Integer getRokProdukcji() {
+        return rokProdukcji;
     }
 
-    public void setRok_produkcji(int rokProdukcji) {
-        this.rok_produkcji = rokProdukcji;
+    public void setRokProdukcji(int rokProdukcji) {
+        this.rokProdukcji = rokProdukcji;
     }
 
-    public String getNumer_boczny() {
-        return numer_boczny;
+    public String getNumerBoczny() {
+        return numerBoczny;
     }
 
-    public void setNumer_boczny(String numerBoczny) {
-        this.numer_boczny = numerBoczny;
+    public void setNumerBoczny(String numerBoczny) {
+        this.numerBoczny = numerBoczny;
     }
 
     public Integer getPojemnosc() {

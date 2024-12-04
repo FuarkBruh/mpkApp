@@ -10,7 +10,7 @@ public class PrzystankiModel {
     @SequenceGenerator(name = "przystanki_id_gen", sequenceName = "przystanki_id_seq", allocationSize = 1)
     private int id;
     private String nazwa;
-    private String wspolrzedne_lokalizacji;
+    private String wspolrzedneLokalizacji;
 
     public PrzystankiModel() {}
 
@@ -30,12 +30,12 @@ public class PrzystankiModel {
         this.nazwa = nazwa;
     }
 
-    public String getWspolrzedne_lokalizacji() {
-        return wspolrzedne_lokalizacji;
+    public String getWspolrzedneLokalizacji() {
+        return wspolrzedneLokalizacji;
     }
 
-    public void setWspolrzedne_lokalizacji(String wspolrzedne_lokalizacji) {
-        this.wspolrzedne_lokalizacji = wspolrzedne_lokalizacji;
+    public void setWspolrzedneLokalizacji(String wspolrzedne_lokalizacji) {
+        this.wspolrzedneLokalizacji = wspolrzedne_lokalizacji;
     }
 
 

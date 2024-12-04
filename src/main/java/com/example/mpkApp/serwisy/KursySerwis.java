@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,11 +26,11 @@ public class KursySerwis {
         }
         else {
             KursyModel kurs = optionalKurs.get();
-            kurs.setCzas_odjazdu_z_petli(updatedKurs.getCzas_odjazdu_z_petli());
+            kurs.setCzasOdjazduZPetli(updatedKurs.getCzasOdjazduZPetli());
             kurs.setOpoznienie(updatedKurs.getOpoznienie());
-            kurs.setLinia_id(updatedKurs.getLinia_id());
-            kurs.setTramwaj_id(updatedKurs.getTramwaj_id());
-            kurs.setNastepny_przystanek(updatedKurs.getNastepny_przystanek());
+            kurs.setLiniaId(updatedKurs.getLiniaId());
+            kurs.setTramwajId(updatedKurs.getTramwajId());
+            kurs.setNastepnyPrzystanek(updatedKurs.getNastepnyPrzystanek());
             kursyRepo.save(kurs);
         }
     }

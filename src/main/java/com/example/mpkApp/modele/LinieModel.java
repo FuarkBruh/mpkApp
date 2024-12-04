@@ -9,8 +9,8 @@ public class LinieModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "linie_id_gen")
     @SequenceGenerator(name = "linie_id_gen", sequenceName = "linie_id_seq", allocationSize = 1)
     private int id;
-    private String numer_linii;
-    private int calkowity_czas_przejazdu;
+    private String numerLinii;
+    private int calkowityCzasPrzejazdu;
 
     public LinieModel() {}
 
@@ -23,18 +23,18 @@ public class LinieModel {
     }
 
     public String getNumer() {
-        return numer_linii;
+        return numerLinii;
     }
 
     public void setNumer(String numer) {
-        this.numer_linii = numer;
+        this.numerLinii = numer;
     }
 
-    public int getCalkowity_czas_przejazdu() {
-        return calkowity_czas_przejazdu;
+    public int getCalkowityCzasPrzejazdu() {
+        return calkowityCzasPrzejazdu;
     }
 
-    public void setCalkowity_czas_przejazdu(int calkowity_czas_przejazdu) {
-        this.calkowity_czas_przejazdu = calkowity_czas_przejazdu;
+    public void setCalkowityCzasPrzejazdu(int calkowity_czas_przejazdu) {
+        this.calkowityCzasPrzejazdu = calkowity_czas_przejazdu;
     }
 }

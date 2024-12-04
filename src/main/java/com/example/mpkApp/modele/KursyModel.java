@@ -11,11 +11,15 @@ public class KursyModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "kursy_id_gen")
     @SequenceGenerator(name = "kursy_id_gen", sequenceName = "kursy_id_seq", allocationSize = 1)
     private int id;
-    private int tramwaj_id;
-    private int linia_id;
-    private Timestamp czas_odjazdu_z_petli;
+
+    private int tramwajId;
+
+    @Column(name = "linia_id")
+    private int liniaId;
+
+    private Timestamp czasOdjazduZPetli;
     private int opoznienie;
-    private int nastepny_przystanek;
+    private int nastepnyPrzystanek;
 
     public KursyModel() {}
 
@@ -27,28 +31,28 @@ public class KursyModel {
         this.id = id;
     }
 
-    public int getTramwaj_id() {
-        return tramwaj_id;
+    public int getTramwajId() {
+        return tramwajId;
     }
 
-    public void setTramwaj_id(int tramwaj_id) {
-        this.tramwaj_id = tramwaj_id;
+    public void setTramwajId(int tramwaj_id) {
+        this.tramwajId = tramwaj_id;
     }
 
-    public int getLinia_id() {
-        return linia_id;
+    public int getLiniaId() {
+        return liniaId;
     }
 
-    public void setLinia_id(int linia_id) {
-        this.linia_id = linia_id;
+    public void setLiniaId(int linia_id) {
+        this.liniaId = linia_id;
     }
 
-    public Timestamp getCzas_odjazdu_z_petli() {
-        return czas_odjazdu_z_petli;
+    public Timestamp getCzasOdjazduZPetli() {
+        return czasOdjazduZPetli;
     }
 
-    public void setCzas_odjazdu_z_petli(Timestamp czas_odjazdu) {
-        this.czas_odjazdu_z_petli = czas_odjazdu;
+    public void setCzasOdjazduZPetli(Timestamp czas_odjazdu) {
+        this.czasOdjazduZPetli = czas_odjazdu;
     }
 
     public int getOpoznienie() {
@@ -59,11 +63,11 @@ public class KursyModel {
         this.opoznienie = opoznienie;
     }
 
-    public int getNastepny_przystanek() {
-        return nastepny_przystanek;
+    public int getNastepnyPrzystanek() {
+        return nastepnyPrzystanek;
     }
 
-    public void setNastepny_przystanek(int nastepny_przystanek) {
-        this.nastepny_przystanek = nastepny_przystanek;
+    public void setNastepnyPrzystanek(int nastepny_przystanek) {
+        this.nastepnyPrzystanek = nastepny_przystanek;
     }
 }
