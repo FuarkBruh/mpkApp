@@ -1,13 +1,13 @@
 package com.example.mpkApp.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "przystanki")
 public class PrzystankiModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "przystanki_id_gen")
+    @SequenceGenerator(name = "przystanki_id_gen", sequenceName = "przystanki_id_seq", allocationSize = 1)
     private int id;
     private String nazwa;
     private String wspolrzedne_lokalizacji;

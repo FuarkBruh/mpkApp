@@ -1,8 +1,6 @@
 package com.example.mpkApp.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
@@ -10,7 +8,10 @@ import java.sql.Timestamp;
 @Table(name = "opinie")
 public class OpinieModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "opinie_id_gen")
+    @SequenceGenerator(name = "opinie_id_gen", sequenceName = "opinie_id_seq", allocationSize = 1)
     private int id;
+    private int id_uzytkownika;
     private String numer_linii;
     private String numer_boczny;
     private Timestamp godzina;
@@ -24,6 +25,14 @@ public class OpinieModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId_uzytkownika() {
+        return id_uzytkownika;
+    }
+
+    public void setId_uzytkownika(int id_uzytkownika) {
+        this.id_uzytkownika = id_uzytkownika;
     }
 
     public String getNumer_linii() {

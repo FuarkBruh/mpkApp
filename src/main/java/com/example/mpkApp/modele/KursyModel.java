@@ -1,8 +1,6 @@
 package com.example.mpkApp.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
@@ -10,11 +8,14 @@ import java.sql.Timestamp;
 @Table(name = "kursy")
 public class KursyModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "kursy_id_gen")
+    @SequenceGenerator(name = "kursy_id_gen", sequenceName = "kursy_id_seq", allocationSize = 1)
     private int id;
     private int tramwaj_id;
     private int linia_id;
-    private Timestamp czas_odjazdu;
+    private Timestamp czas_odjazdu_z_petli;
     private int opoznienie;
+    private int nastepny_przystanek;
 
     public KursyModel() {}
 
@@ -42,12 +43,12 @@ public class KursyModel {
         this.linia_id = linia_id;
     }
 
-    public Timestamp getCzas_odjazdu() {
-        return czas_odjazdu;
+    public Timestamp getCzas_odjazdu_z_petli() {
+        return czas_odjazdu_z_petli;
     }
 
-    public void setCzas_odjazdu(Timestamp czas_odjazdu) {
-        this.czas_odjazdu = czas_odjazdu;
+    public void setCzas_odjazdu_z_petli(Timestamp czas_odjazdu) {
+        this.czas_odjazdu_z_petli = czas_odjazdu;
     }
 
     public int getOpoznienie() {
@@ -56,5 +57,13 @@ public class KursyModel {
 
     public void setOpoznienie(int opoznienie) {
         this.opoznienie = opoznienie;
+    }
+
+    public int getNastepny_przystanek() {
+        return nastepny_przystanek;
+    }
+
+    public void setNastepny_przystanek(int nastepny_przystanek) {
+        this.nastepny_przystanek = nastepny_przystanek;
     }
 }

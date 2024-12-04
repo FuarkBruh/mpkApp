@@ -1,17 +1,16 @@
 package com.example.mpkApp.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "linie")
 public class LinieModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "linie_id_gen")
+    @SequenceGenerator(name = "linie_id_gen", sequenceName = "linie_id_seq", allocationSize = 1)
     private int id;
-    private String numer;
+    private String numer_linii;
     private int calkowity_czas_przejazdu;
-    private int dystans;
 
     public LinieModel() {}
 
@@ -24,11 +23,11 @@ public class LinieModel {
     }
 
     public String getNumer() {
-        return numer;
+        return numer_linii;
     }
 
     public void setNumer(String numer) {
-        this.numer = numer;
+        this.numer_linii = numer;
     }
 
     public int getCalkowity_czas_przejazdu() {
@@ -37,13 +36,5 @@ public class LinieModel {
 
     public void setCalkowity_czas_przejazdu(int calkowity_czas_przejazdu) {
         this.calkowity_czas_przejazdu = calkowity_czas_przejazdu;
-    }
-
-    public int getDystans() {
-        return dystans;
-    }
-
-    public void setDystans(int dystans) {
-        this.dystans = dystans;
     }
 }

@@ -25,7 +25,6 @@ public class LinieSerwis {
         }
         else {
             LinieModel linia = optionalLinia.get();
-            linia.setDystans(updatedLinia.getDystans());
             linia.setNumer(updatedLinia.getNumer());
             linia.setCalkowity_czas_przejazdu(updatedLinia.getCalkowity_czas_przejazdu());
             linieRepo.save(linia);

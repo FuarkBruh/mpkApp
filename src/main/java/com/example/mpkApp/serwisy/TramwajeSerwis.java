@@ -47,9 +47,9 @@ public class TramwajeSerwis {
         else {
             TramwajeModel tramwaj = optionalTramwaj.get();
             tramwaj.setModel(updatedTramwaj.getModel());
-            tramwaj.setNumerBoczny(updatedTramwaj.getNumerBoczny());
+            tramwaj.setNumer_boczny(updatedTramwaj.getNumer_boczny());
             tramwaj.setPojemnosc(updatedTramwaj.getPojemnosc());
-            tramwaj.setRokProdukcji(updatedTramwaj.getRokProdukcji());
+            tramwaj.setRok_produkcji(updatedTramwaj.getRok_produkcji());
             tramwaj.setUwagi(updatedTramwaj.getUwagi());
             tramwajeRepo.save(tramwaj);
         }
