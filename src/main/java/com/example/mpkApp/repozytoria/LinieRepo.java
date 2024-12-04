@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface LinieRepo extends JpaRepository<LinieModel, Integer> {
-     List<LinieModel> findAllByNumerLinii(int numerLinii);
+     List<LinieModel> findAllByNumerLinii(String numerLinii);
 }

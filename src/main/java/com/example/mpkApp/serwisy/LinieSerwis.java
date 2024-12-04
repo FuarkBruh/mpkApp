@@ -57,7 +57,7 @@ public class LinieSerwis {
     }
 
     @Transactional
-    List<LinieModel> findAllByNumerLinii(int numerLinii) {
+    List<LinieModel> findAllByNumerLinii(String numerLinii) {
         return linieRepo.findAllByNumerLinii(numerLinii);
     }
 

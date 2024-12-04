@@ -1,0 +1,61 @@
+/* Styl dla całej strony */
+body {
+    background: linear-gradient(to right, #ffcb00 20%, #ffffff 20%, #ffffff 80%, #e5010e 80%);
+    height: 90vh; /* Wysokość całej strony */
+    margin: 0; /* Usunięcie domyślnych marginesów */
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+/* Styl nawigacji */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styl dla każdego przycisku */
+.nav-button {
+    display: inline-block;
+    background-color: #4CAF50; /* Zielony kolor przycisku */
+    color: white;
+    text-align: center;
+    padding: 10px 20px; /* Wewnętrzne odstępy */
+    margin: 10px; /* Odstęp między przyciskami */
+    border-radius: 5px; /* Zaokrąglenie rogów */
+    text-decoration: none; /* Usuwa podkreślenie linków */
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animacja zmiany koloru i efektu kliknięcia */
+}
+
+/* Efekt najechania na przycisk */
+.nav-button:hover {
+    background-color: #45a049; /* Ciemniejszy zielony */
+    transform: scale(1.05); /* Powiększenie przycisku */
+}
+
+/* Efekt kliknięcia */
+.nav-button:active {
+    background-color: #3e8e41; /* Jeszcze ciemniejszy zielony */
+    transform: scale(0.98); /* Minimalne zmniejszenie przycisku */
+}
+
+/* Styl dla tekstu głownego */
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+/* Styl dla stopki */
+footer {
+    color: black;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
