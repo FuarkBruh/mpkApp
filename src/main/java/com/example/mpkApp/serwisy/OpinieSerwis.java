@@ -47,4 +47,11 @@ public class OpinieSerwis {
     public void newOpinia(OpinieModel opinia) {
         opinieRepo.save(opinia);
     }
+
+    @Override
+    public String toString() {
+        return "OpinieSerwis{" +
+                "opinieRepo=" + opinieRepo +
+                '}';
+    }
 }

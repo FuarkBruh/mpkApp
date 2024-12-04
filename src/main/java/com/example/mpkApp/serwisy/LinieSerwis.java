@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,5 +45,26 @@ public class LinieSerwis {
     @Transactional
     public void newLinia(LinieModel tramwaj) {
         linieRepo.save(tramwaj);
+    }
+
+    @Transactional
+    public List<LinieModel> getAllLinies() {
+        return linieRepo.findAll();
+    }
+
+    public LinieModel getLinie(int id) {
+        return linieRepo.findById(id).get();
+    }
+
+    @Transactional
+    List<LinieModel> findAllByNumerLinii(int numerLinii) {
+        return linieRepo.findAllByNumerLinii(numerLinii);
+    }
+
+    @Override
+    public String toString() {
+        return "LinieSerwis{" +
+                "linieRepo=" + linieRepo +
+                '}';
     }
 }

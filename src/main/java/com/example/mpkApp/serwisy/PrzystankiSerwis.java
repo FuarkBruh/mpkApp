@@ -44,4 +44,11 @@ public class PrzystankiSerwis {
     public void newPrzystanek(PrzystankiModel przystanek) {
         przystanekRepo.save(przystanek);
     }
+
+    @Override
+    public String toString() {
+        return "PrzystankiSerwis{" +
+                "przystanekRepo=" + przystanekRepo +
+                '}';
+    }
 }

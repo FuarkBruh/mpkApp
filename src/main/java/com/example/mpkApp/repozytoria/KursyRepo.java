@@ -8,4 +8,5 @@ import java.util.List;
 
 @Repository
 public interface KursyRepo extends JpaRepository<KursyModel, Integer> {
+    List<KursyModel> findAllByLiniaId(int liniaId);
 }

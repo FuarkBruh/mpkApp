@@ -12,4 +12,11 @@ public class RozkladSerwis {
     public RozkladSerwis(RozkladRepo rozkladRepo) {
         this.rozkladRepo = rozkladRepo;
     }
+
+    @Override
+    public String toString() {
+        return "RozkladSerwis{" +
+                "rozkladRepo=" + rozkladRepo +
+                '}';
+    }
 }

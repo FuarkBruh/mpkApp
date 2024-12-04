@@ -49,4 +49,16 @@ public class KursySerwis {
     public void newKurs(KursyModel kurs) {
         kursyRepo.save(kurs);
     }
+
+    @Transactional
+    List<KursyModel> findAllByLiniaId(int liniaId) {
+        return kursyRepo.findAllByLiniaId(liniaId);
+    }
+
+    @Override
+    public String toString() {
+        return "KursySerwis{" +
+                "kursyRepo=" + kursyRepo +
+                '}';
+    }
 }

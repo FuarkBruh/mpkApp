@@ -12,4 +12,11 @@ public class UzytkownikSerwis {
     UzytkownikSerwis(UzytkownikRepo uzytkownikRepo) {
         this.uzytkownikRepo = uzytkownikRepo;
     }
+
+    @Override
+    public String toString() {
+        return "UzytkownikSerwis{" +
+                "uzytkownikRepo=" + uzytkownikRepo +
+                '}';
+    }
 }

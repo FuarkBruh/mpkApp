@@ -18,20 +18,6 @@ public class TramwajeSerwis {
         this.tramwajeRepo = tramwajeRepo;
     }
 
-    public List<TramwajeModel> findAllTramwaje() {
-        if(tramwajeRepo.findAll().isEmpty()) {
-            throw new RuntimeException("No tramwaje found");
-        }
-        else {
-            tramwajeRepo.findAll();
-            return tramwajeRepo.findAll();
-        }
-    }
-
-    public TramwajeModel findTramwajById(int id) {
-        return tramwajeRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tramwaj with ID " + id + " not found"));
-    }
 
     @Transactional
     public void newTramwaj(TramwajeModel tramwaj) {
@@ -63,5 +49,27 @@ public class TramwajeSerwis {
         else {
             throw new RuntimeException("Tramwaj not found");
         }
+    }
+
+    public List<TramwajeModel> findAllTramwaje() {
+        if(tramwajeRepo.findAll().isEmpty()) {
+            throw new RuntimeException("No tramwaje found");
+        }
+        else {
+            tramwajeRepo.findAll();
+            return tramwajeRepo.findAll();
+        }
+    }
+
+    public TramwajeModel findTramwajById(int id) {
+        return tramwajeRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tramwaj with ID " + id + " not found"));
+    }
+
+    @Override
+    public String toString() {
+        return "TramwajeSerwis{" +
+                "tramwajeRepo=" + tramwajeRepo +
+                '}';
     }
 }
