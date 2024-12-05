@@ -41,12 +41,12 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService() {
         // Używamy BCryptPasswordEncoder do zakodowania hasła
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode("admin");
+        String zakodowaneHaslo = passwordEncoder.encode("admin");
 
         UserDetails user = User.builder()
                 .username("admin")
-                .password(encodedPassword) // Używamy zakodowanego hasła
-                .roles("ADMINISTRATOR") // Używamy roli z prefiksem ROLE_
+                .password(zakodowaneHaslo)
+                .roles("ADMINISTRATOR")
                 .build();
 
         return new InMemoryUserDetailsManager(user);
