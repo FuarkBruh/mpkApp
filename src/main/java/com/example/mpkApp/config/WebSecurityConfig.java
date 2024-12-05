@@ -19,9 +19,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable()) // Wyłączamy CSRF dla całej aplikacji (lub można to zrobić tylko dla /login)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/login").permitAll() // Dostęp do formularza logowania
-                        .requestMatchers("/adminStrona").authenticated() // Tylko użytkownicy z rolą ADMINISTRATOR mogą zobaczyć stronę adminStrona
+                        .requestMatchers("/adminStrona").hasRole("ADMINISTRATOR") // Tylko użytkownicy z rolą ADMINISTRATOR mogą zobaczyć stronę adminStrona
                         .anyRequest().permitAll() // Inne strony są dostępne publicznie
                 )
                 .formLogin((form) -> form
@@ -34,6 +35,8 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+
+
     @Bean
     public UserDetailsService userDetailsService() {
         // Używamy BCryptPasswordEncoder do zakodowania hasła
@@ -43,7 +46,7 @@ public class WebSecurityConfig {
         UserDetails user = User.builder()
                 .username("admin")
                 .password(encodedPassword) // Używamy zakodowanego hasła
-                .roles("ADMINISTRATOR")
+                .roles("ADMINISTRATOR") // Używamy roli z prefiksem ROLE_
                 .build();
 
         return new InMemoryUserDetailsManager(user);
