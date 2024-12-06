@@ -8,12 +8,21 @@ public class AdminController {
 
     @GetMapping("/login")
     public String login() {
-        return "forward:/login.html";  // Zwróć nazwę pliku statycznego
+        return "forward:/login.html";  //
     }
 
     @GetMapping("/adminStrona")
     public String adminPage() {
-        return "forward:/adminStrona.html";  // Zwróć nazwę pliku statycznego
+        return "forward:/adminStrona.html";
+    }
+
+    @GetMapping("/glowna")
+    public String glowna() {
+        return "forward:/glowna.html";
+    }
+
+    @GetMapping("/logoutSukces")
+    public String logoutSukces() {
+        return "forward:/logoutSukces.html";
     }
 }
-

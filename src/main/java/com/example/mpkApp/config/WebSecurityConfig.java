@@ -19,7 +19,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Wyłączamy CSRF dla całej aplikacji (lub można to zrobić tylko dla /login)
+                .csrf(csrf -> csrf.disable()) // Wyłączamy CSRF dla całej aplikacji, bo nie jest nam potrzebny i konieczny w aplikacjach REST
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/login").permitAll() // Dostęp do formularza logowania
                         .requestMatchers("/adminStrona").hasRole("ADMINISTRATOR") // Tylko użytkownicy z rolą ADMINISTRATOR mogą zobaczyć stronę adminStrona
@@ -30,7 +30,10 @@ public class WebSecurityConfig {
                         .defaultSuccessUrl("/adminStrona", true)  // Po zalogowaniu przekierowanie do strony admin
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/logoutSukces")
+                        .permitAll()); //Warto zrobić stronę wylogowania
 
         return http.build();
     }
