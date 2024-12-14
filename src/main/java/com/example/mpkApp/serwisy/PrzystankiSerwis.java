@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +16,11 @@ public class PrzystankiSerwis {
     @Autowired
     public PrzystankiSerwis(PrzystankiRepo przystanekRepo) {
         this.przystanekRepo = przystanekRepo;
+    }
+
+    @Transactional
+    public void newPrzystanek(PrzystankiModel przystanek) {
+        przystanekRepo.save(przystanek);
     }
 
     @Transactional
@@ -40,9 +46,26 @@ public class PrzystankiSerwis {
         }
     }
 
-    @Transactional
-    public void newPrzystanek(PrzystankiModel przystanek) {
-        przystanekRepo.save(przystanek);
+    public PrzystankiModel findPrzystanekById(Integer id) {
+        if(przystanekRepo.existsById(id)) {
+            return przystanekRepo.findById(id).get();
+        }
+        else {
+            throw new RuntimeException("Przystanek not found");
+        }
+    }
+
+    public List<PrzystankiModel> findAllPrzystanek() {
+        return przystanekRepo.findAll();
+    }
+
+    public PrzystankiModel findPrzystanekByNazwa(String nazwa) {
+        if(przystanekRepo.findByNazwa(nazwa) != null) {
+            return przystanekRepo.findByNazwa(nazwa);
+        }
+        else {
+            throw new RuntimeException("Przystanek not found");
+        }
     }
 
     @Override

@@ -22,17 +22,17 @@ public class KursyController {
         kursySerwis.newKurs(kursyModel);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateKursy(@PathVariable int id, @RequestBody KursyModel kursyModel) {
         kursySerwis.updateKursy(id, kursyModel);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteKursy(@PathVariable int id) {
         kursySerwis.deleteKurs(id);
     }
 
-    @GetMapping("{linia_id}")
+    @GetMapping("/{linia_id}")
     public List<KursyModel> findAllKursyByLiniaID(@PathVariable int linia_id) {
         return kursySerwis.findKursyByLiniaID(linia_id);
     }

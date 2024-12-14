@@ -22,12 +22,12 @@ public class MapowanieLiniiController {
         mapowanieLiniiSerwis.newMapowanieLinii(model);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateMapowanieLinii(@PathVariable Integer id, @RequestBody MapowanieLiniiModel model) {
         mapowanieLiniiSerwis.updateMapowanieLinii(id, model);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteMapowanieLinii(@PathVariable Integer id) {
         mapowanieLiniiSerwis.deleteMapowanieLinii(id);
     }

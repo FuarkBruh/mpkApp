@@ -20,12 +20,12 @@ public class OpinieController {
         opinieSerwis.newOpinia(model);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateOpinia(@PathVariable Integer id, OpinieModel model) {
         opinieSerwis.updateOpinia(id, model);
     }
 
-    @DeleteMapping("{id]")
+    @DeleteMapping("/{id]")
     public void deleteOpinia(@PathVariable Integer id) {
         opinieSerwis.deleteOpinia(id);
     }
@@ -35,7 +35,7 @@ public class OpinieController {
         return opinieSerwis.getAllOpinies();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public OpinieModel getOpinia(@PathVariable Integer id) {
         return opinieSerwis.getOpiniaById(id);
     }

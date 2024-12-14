@@ -22,12 +22,12 @@ public class LinieController {
         linieSerwis.newLinia(linia);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateLinia(@PathVariable int id, LinieModel linia) {
         linieSerwis.updateLinia(id, linia);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteLinia(@PathVariable int id) {
         linieSerwis.deleteLinia(id);
     }
@@ -37,12 +37,12 @@ public class LinieController {
         return linieSerwis.getAllLinies();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public LinieModel getLinie(@PathVariable int id) {
         return linieSerwis.getLinie(id);
     }
 
-    @GetMapping("{numerLinii}")
+    @GetMapping("/{numerLinii}")
     public List<LinieModel> findAllByNumerLinii(@PathVariable String numerLinii) {
         return linieSerwis.findAllByNumerLinii(numerLinii);
     }
