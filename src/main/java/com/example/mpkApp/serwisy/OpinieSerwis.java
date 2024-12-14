@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +16,11 @@ public class OpinieSerwis {
     @Autowired
     public OpinieSerwis(OpinieRepo opinieRepo) {
         this.opinieRepo = opinieRepo;
+    }
+
+    @Transactional
+    public void newOpinia(OpinieModel opinia) {
+        opinieRepo.save(opinia);
     }
 
     @Transactional
@@ -43,9 +49,22 @@ public class OpinieSerwis {
         }
     }
 
-    @Transactional
-    public void newOpinia(OpinieModel opinia) {
-        opinieRepo.save(opinia);
+    public List<OpinieModel> getAllOpinies() {
+        if(opinieRepo.existsById(0)) {
+            return opinieRepo.findAll();
+        }
+        else {
+            throw new RuntimeException("Opinie not found");
+        }
+    }
+
+    public OpinieModel getOpiniaById(Integer id) {
+        if(opinieRepo.existsById(id)) {
+            return opinieRepo.findById(id).get();
+        }
+        else {
+            throw new RuntimeException("Opinia not found");
+        }
     }
 
     @Override
