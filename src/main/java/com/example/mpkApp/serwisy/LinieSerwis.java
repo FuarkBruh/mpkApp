@@ -24,7 +24,7 @@ public class LinieSerwis {
     }
 
     @Transactional
-    public void updateLinia(int id, LinieModel updatedLinia) {
+    public void updateLinia(Integer id, LinieModel updatedLinia) {
         Optional<LinieModel> optionalLinia = linieRepo.findById(id);
         if (optionalLinia.isEmpty()) {
             throw new RuntimeException("Linie not found");
@@ -38,7 +38,7 @@ public class LinieSerwis {
     }
 
     @Transactional
-    public void deleteLinia(int id) {
+    public void deleteLinia(Integer id) {
         if(linieRepo.existsById(id)) {
             linieRepo.deleteById(id);
         }
@@ -51,7 +51,7 @@ public class LinieSerwis {
         return linieRepo.findAll();
     }
 
-    public LinieModel getLinie(int id) {
+    public LinieModel getLinie(Integer id) {
         return linieRepo.findById(id).get();
     }
 

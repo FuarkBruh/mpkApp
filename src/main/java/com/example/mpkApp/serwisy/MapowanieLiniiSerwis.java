@@ -22,6 +22,10 @@ public class MapowanieLiniiSerwis {
         mapowanieLiniiRepo.save(model);
     }
 
+    @Transactional
+    public void editMapowanieLinii (Integer id, MapowanieLiniiModel model) {
+    }
+
     public Optional<MapowanieLiniiModel> findById(Integer id) {
         return mapowanieLiniiRepo.findById(id);
     }

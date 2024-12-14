@@ -18,7 +18,7 @@ public class PrzystankiSerwis {
     }
 
     @Transactional
-    public void updatePrzystanek(int id, PrzystankiModel updatedPrzystanek) {
+    public void updatePrzystanek(Integer id, PrzystankiModel updatedPrzystanek) {
         Optional<PrzystankiModel> optionalPrzystanek = przystanekRepo.findById(id);
         if (optionalPrzystanek.isEmpty()) {
             throw new RuntimeException("Przystanek not found");
@@ -31,7 +31,7 @@ public class PrzystankiSerwis {
     }
 
     @Transactional
-    public void deletePrzystanek(int id) {
+    public void deletePrzystanek(Integer id) {
         if(przystanekRepo.existsById(id)) {
             przystanekRepo.deleteById(id);
         }

@@ -18,7 +18,7 @@ public class OpinieSerwis {
     }
 
     @Transactional
-    public void updateOpinia(int id, OpinieModel updatedOpinia) {
+    public void updateOpinia(Integer id, OpinieModel updatedOpinia) {
         Optional<OpinieModel> optionalOpinia = opinieRepo.findById(id);
         if (optionalOpinia.isEmpty()) {
             throw new RuntimeException("Opinia not found");
@@ -34,7 +34,7 @@ public class OpinieSerwis {
     }
 
     @Transactional
-    public void deleteOpinia(int id) {
+    public void deleteOpinia(Integer id) {
         if(opinieRepo.existsById(id)) {
             opinieRepo.deleteById(id);
         }
