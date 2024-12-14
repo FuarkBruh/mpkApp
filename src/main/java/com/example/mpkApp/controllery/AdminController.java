@@ -16,6 +16,11 @@ public class AdminController {
         return "forward:/adminStrona.html";
     }
 
+    @GetMapping("/zarzadzaniePojazdami")
+    public String zarzadzaniePojazdami() {
+        return "forward:/zarzadzaniePojazdami.html";
+    }
+
     @GetMapping("/glowna")
     public String glowna() {
         return "forward:/glowna.html";

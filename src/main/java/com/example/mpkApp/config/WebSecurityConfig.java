@@ -38,8 +38,6 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-
-
     @Bean
     public UserDetailsService userDetailsService() {
         // Używamy BCryptPasswordEncoder do zakodowania hasła

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zarządzaj Pojazdami MPK</title>
+  <link rel="stylesheet" href="/css/zarzadzaniePojazdami.css?v=1.0">
+</head>
+<body>
+<div class="container">
+  <h1>Zarządzaj Pojazdami MPK</h1>
+
+  <!-- Formularz dodawania nowego pojazdu -->
+  <h2>Dodaj nowy pojazd</h2>
+  <form action="/tramwaje/dodaj" method="POST">
+    <label for="model">Model:</label>
+    <input type="text" id="model" name="model" required>
+    <br>
+    <label for="numerBoczny">Numer Boczny:</label>
+    <input type="text" id="numerBoczny" name="numerBoczny" required>
+    <br>
+    <label for="rokProdukcji">Rok Produkcji:</label>
+    <input type="number" id="rokProdukcji" name="rokProdukcji" min="1900" max="2100" required>
+    <br>
+    <label for="pojemnosc">Pojemność:</label>
+    <input type="number" id="pojemnosc" name="pojemnosc" min="0" required>
+    <br>
+    <label for="uwagi">Uwagi:</label>
+    <textarea id="uwagi" name="uwagi"></textarea>
+    <br>
+    <button type="submit">Dodaj Pojazd</button>
+  </form>
+
+  <!-- Tabela pojazdów -->
+  <h2>Lista pojazdów</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Model</th>
+      <th>Numer Boczny</th>
+      <th>Rok Produkcji</th>
+      <th>Pojemność</th>
+      <th>Uwagi</th>
+      <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Wiersze zostaną wygenerowane dynamicznie przez backend -->
+    </tbody>
+  </table>
+</div>
+<script src="/js/zarzadzaniePojazdami.js" defer></script>
+</body>
+</html>
