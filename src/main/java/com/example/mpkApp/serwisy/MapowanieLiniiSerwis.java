@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,11 +24,38 @@ public class MapowanieLiniiSerwis {
     }
 
     @Transactional
-    public void editMapowanieLinii (Integer id, MapowanieLiniiModel model) {
+    public void updateMapowanieLinii (Integer id, MapowanieLiniiModel updatedMap) {
+        Optional<MapowanieLiniiModel> opt = mapowanieLiniiRepo.findById(id);
+        if (opt.isEmpty()) {
+            throw new RuntimeException("MapowanieLinii not found");
+        }
+        else {
+            MapowanieLiniiModel mapa = opt.get();
+            mapa.setId(updatedMap.getId());
+            mapa.setNumerPrzystankuLinii(updatedMap.getNumerPrzystankuLinii());
+            mapa.setPrzystanekId(updatedMap.getPrzystanekId());
+            mapa.setRoznicaCzasu(updatedMap.getRoznicaCzasu());
+            mapa.setNumerPrzystankuLinii(updatedMap.getNumerPrzystankuLinii());
+            mapowanieLiniiRepo.save(mapa);
+        }
     }
 
-    public Optional<MapowanieLiniiModel> findById(Integer id) {
-        return mapowanieLiniiRepo.findById(id);
+    @Transactional
+    public void deleteMapowanieLinii (Integer id) {
+        if(mapowanieLiniiRepo.existsById(id)) {
+            mapowanieLiniiRepo.deleteById(id);
+        }
+        else {
+            throw new RuntimeException("MapowanieLinii not found");
+        }
+    }
+
+    public List<MapowanieLiniiModel> getAllMapowanieLinii() {
+        return mapowanieLiniiRepo.findAll();
+    }
+
+    public MapowanieLiniiModel getMapowanieLiniiById(Integer id) {
+        return mapowanieLiniiRepo.findById(id).get();
     }
 
     @Override
