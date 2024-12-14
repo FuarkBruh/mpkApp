@@ -25,7 +25,7 @@ public class OpinieController {
         opinieSerwis.updateOpinia(id, model);
     }
 
-    @DeleteMapping("/{id]")
+    @DeleteMapping("/{id}")
     public void deleteOpinia(@PathVariable Integer id) {
         opinieSerwis.deleteOpinia(id);
     }

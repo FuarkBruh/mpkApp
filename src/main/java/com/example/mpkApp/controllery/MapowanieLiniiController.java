@@ -37,7 +37,7 @@ public class MapowanieLiniiController {
         return mapowanieLiniiSerwis.getAllMapowanieLinii();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public MapowanieLiniiModel getMapowanieLinii(@PathVariable Integer id) {
         return mapowanieLiniiSerwis.getMapowanieLiniiById(id);
     }
