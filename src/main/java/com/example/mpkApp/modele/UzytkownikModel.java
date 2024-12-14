@@ -8,16 +8,16 @@ public class UzytkownikModel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uzytkownik_id_gen")
     @SequenceGenerator(name = "uzytkownik_id_gen", sequenceName = "uzytkownik_id_seq", allocationSize = 1)
-    int id;
+    Integer id;
     String email;
     String haslo;
     String rola;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

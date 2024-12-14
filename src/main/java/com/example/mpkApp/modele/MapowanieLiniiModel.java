@@ -9,57 +9,57 @@ public class MapowanieLiniiModel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mapowanie_Linii_id_gen")
     @SequenceGenerator(name = "mapowanie_Linii_id_gen", sequenceName = "mapowanie_Linii_id_seq", allocationSize = 1)
-    private int id;
+    private Integer id;
 
     @NotNull
-    private int liniaId;
+    private Integer liniaId;
 
     @NotNull
-    private int przystanekId;
+    private Integer przystanekId;
 
     @NotNull
-    private int numerPrzystankuLinii;
+    private Integer numerPrzystankuLinii;
 
     @NotNull
-    private int roznicaCzasu;
+    private Integer roznicaCzasu;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getLiniaId() {
+    public Integer getLiniaId() {
         return liniaId;
     }
 
-    public void setLiniaId(int linia_id) {
+    public void setLiniaId(Integer linia_id) {
         this.liniaId = linia_id;
     }
 
-    public int getPrzystanekId() {
+    public Integer getPrzystanekId() {
         return przystanekId;
     }
 
-    public void setPrzystanekId(int przystanek_id) {
+    public void setPrzystanekId(Integer przystanek_id) {
         this.przystanekId = przystanek_id;
     }
 
-    public int getNumerPrzystankuLinii() {
+    public Integer getNumerPrzystankuLinii() {
         return numerPrzystankuLinii;
     }
 
-    public void setNumerPrzystankuLinii(int numer_przystanku_linii) {
+    public void setNumerPrzystankuLinii(Integer numer_przystanku_linii) {
         this.numerPrzystankuLinii = numer_przystanku_linii;
     }
 
-    public int getRoznicaCzasu() {
+    public Integer getRoznicaCzasu() {
         return roznicaCzasu;
     }
 
-    public void setRoznicaCzasu(int roznica_czasu) {
+    public void setRoznicaCzasu(Integer roznica_czasu) {
         this.roznicaCzasu = roznica_czasu;
     }
 }

@@ -17,6 +17,11 @@ public class TramwajeController {
         this.tramwajeSerwis = tramwajeSerwis;
     }
 
+    @PostMapping
+    public void newTramwaj (@RequestBody TramwajeModel tramwaj) {
+        tramwajeSerwis.newTramwaj(tramwaj);
+    }
+
     @GetMapping
     public List<TramwajeModel> getAllTramwaje() {
         return tramwajeSerwis.findAllTramwaje();
@@ -25,11 +30,6 @@ public class TramwajeController {
     @GetMapping("/{id}")
     public TramwajeModel getTramwajeById(@PathVariable Integer id) {
         return tramwajeSerwis.findTramwajById(id);
-    }
-
-    @PostMapping
-    public void newTramwaj (@RequestBody TramwajeModel tramwaj) {
-        tramwajeSerwis.newTramwaj(tramwaj);
     }
 
     @PutMapping("/{id}")

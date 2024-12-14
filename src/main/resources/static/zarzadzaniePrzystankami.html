@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarządzaj Przystankami MPK</title>
+    <link rel="stylesheet" href="/css/zarzadzaniePrzystankami.css?v=1.0">
+</head>
+<body>
+<div class="container">
+    <h1>Zarządzaj Przystankami MPK</h1>
+
+    <!-- Formularz dodawania nowego przystanku -->
+    <h2>Dodaj nowy przystanek</h2>
+    <form action="/przystanki/dodaj" method="POST">
+        <label for="nazwa">Nazwa:</label>
+        <input type="text" id="nazwa" name="nazwa" required>
+        <br>
+        <label for="lokalizacja">Lokalizacja:</label>
+        <input type="text" id="lokalizacja" name="lokalizacja" required>
+        <br>
+        <br>
+        <label for="uwagi">Uwagi:</label>
+        <textarea id="uwagi" name="uwagi"></textarea>
+        <br>
+        <button type="submit">Dodaj Przystanek</button>
+    </form>
+
+    <!-- Tabela przystanków -->
+    <h2>Lista przystanków</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nazwa</th>
+            <th>Lokalizacja</th>
+            <th>Uwagi</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Wiersze zostaną wygenerowane dynamicznie przez backend -->
+        </tbody>
+    </table>
+</div>
+<script src="/js/zarzadzaniePrzystankami.js" defer></script>
+</body>
+</html>

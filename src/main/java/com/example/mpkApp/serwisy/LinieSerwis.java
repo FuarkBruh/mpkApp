@@ -19,6 +19,11 @@ public class LinieSerwis {
     }
 
     @Transactional
+    public void newLinia(LinieModel tramwaj) {
+        linieRepo.save(tramwaj);
+    }
+
+    @Transactional
     public void updateLinia(int id, LinieModel updatedLinia) {
         Optional<LinieModel> optionalLinia = linieRepo.findById(id);
         if (optionalLinia.isEmpty()) {
@@ -42,12 +47,6 @@ public class LinieSerwis {
         }
     }
 
-    @Transactional
-    public void newLinia(LinieModel tramwaj) {
-        linieRepo.save(tramwaj);
-    }
-
-    @Transactional
     public List<LinieModel> getAllLinies() {
         return linieRepo.findAll();
     }
@@ -56,8 +55,7 @@ public class LinieSerwis {
         return linieRepo.findById(id).get();
     }
 
-    @Transactional
-    List<LinieModel> findAllByNumerLinii(String numerLinii) {
+    public List<LinieModel> findAllByNumerLinii(String numerLinii) {
         return linieRepo.findAllByNumerLinii(numerLinii);
     }
 

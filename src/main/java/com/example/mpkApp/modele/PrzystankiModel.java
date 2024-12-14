@@ -8,17 +8,17 @@ public class PrzystankiModel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "przystanki_id_gen")
     @SequenceGenerator(name = "przystanki_id_gen", sequenceName = "przystanki_id_seq", allocationSize = 1)
-    private int id;
+    private Integer id;
     private String nazwa;
     private String wspolrzedneLokalizacji;
 
     public PrzystankiModel() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

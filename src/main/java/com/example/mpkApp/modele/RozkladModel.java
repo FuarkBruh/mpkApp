@@ -10,23 +10,23 @@ public class RozkladModel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rozklad_id_gen")
     @SequenceGenerator(name = "rozklad_id_gen", sequenceName = "rozklad_id_seq", allocationSize = 1)
-    private int id;
-    private int numerLinii;
+    private Integer id;
+    private Integer numerLinii;
     private Timestamp czasStartu;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getNumerLinii() {
+    public Integer getNumerLinii() {
         return numerLinii;
     }
 
-    public void setNumerLinii(int numer_linii) {
+    public void setNumerLinii(Integer numer_linii) {
         this.numerLinii = numer_linii;
     }
 

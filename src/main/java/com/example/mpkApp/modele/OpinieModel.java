@@ -10,8 +10,8 @@ public class OpinieModel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "opinie_id_gen")
     @SequenceGenerator(name = "opinie_id_gen", sequenceName = "opinie_id_seq", allocationSize = 1)
-    private int id;
-    private int idUzytkownika;
+    private Integer id;
+    private Integer idUzytkownika;
     private String numerLinii;
     private String numerBoczny;
     private Timestamp godzina;
@@ -19,19 +19,19 @@ public class OpinieModel {
 
     public OpinieModel() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getIdUzytkownika() {
+    public Integer getIdUzytkownika() {
         return idUzytkownika;
     }
 
-    public void setIdUzytkownika(int id_uzytkownika) {
+    public void setIdUzytkownika(Integer id_uzytkownika) {
         this.idUzytkownika = id_uzytkownika;
     }
 

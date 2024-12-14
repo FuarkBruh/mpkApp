@@ -10,16 +10,16 @@ public class KursyModel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "kursy_id_gen")
     @SequenceGenerator(name = "kursy_id_gen", sequenceName = "kursy_id_seq", allocationSize = 1)
-    private int id;
+    private Integer id;
 
-    private int tramwajId;
+    private Integer tramwajId;
 
     @Column(name = "linia_id")
-    private int liniaId;
+    private Integer liniaId;
 
     private Timestamp czasOdjazduZPetli;
-    private int opoznienie;
-    private int nastepnyPrzystanek;
+    private Integer opoznienie;
+    private Integer nastepnyPrzystanek;
 
     public KursyModel() {}
 
@@ -35,7 +35,7 @@ public class KursyModel {
         return tramwajId;
     }
 
-    public void setTramwajId(int tramwaj_id) {
+    public void setTramwajId(Integer tramwaj_id) {
         this.tramwajId = tramwaj_id;
     }
 
@@ -43,7 +43,7 @@ public class KursyModel {
         return liniaId;
     }
 
-    public void setLiniaId(int linia_id) {
+    public void setLiniaId(Integer linia_id) {
         this.liniaId = linia_id;
     }
 
@@ -59,7 +59,7 @@ public class KursyModel {
         return opoznienie;
     }
 
-    public void setOpoznienie(int opoznienie) {
+    public void setOpoznienie(Integer opoznienie) {
         this.opoznienie = opoznienie;
     }
 
@@ -67,7 +67,7 @@ public class KursyModel {
         return nastepnyPrzystanek;
     }
 
-    public void setNastepnyPrzystanek(int nastepny_przystanek) {
+    public void setNastepnyPrzystanek(Integer nastepny_przystanek) {
         this.nastepnyPrzystanek = nastepny_przystanek;
     }
 }
