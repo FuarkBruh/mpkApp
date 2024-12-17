@@ -8,8 +8,7 @@ public class AdminController {
 
     @GetMapping("/login")
     public String login() {
-        return "forward:/login.html";  //
-    }
+        return "forward:/login.html";  }
 
     @GetMapping("/adminStrona")
     public String adminPage() {
@@ -20,6 +19,9 @@ public class AdminController {
     public String zarzadzaniePojazdami() {
         return "forward:/zarzadzaniePojazdami.html";
     }
+
+    @GetMapping("/zarzadzaniePrzystankami")
+    public String zarzadzaniePrzystankami() { return "forward:/zarzadzaniePrzystankami.html"; }
 
     @GetMapping("/glowna")
     public String glowna() {
