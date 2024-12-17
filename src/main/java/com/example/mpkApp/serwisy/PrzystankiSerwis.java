@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +22,7 @@ public class PrzystankiSerwis {
 
     @Transactional
     public void newPrzystanek(PrzystankiModel przystanek) {
+        przystanek.setDataDodania(Timestamp.valueOf(LocalDateTime.now()));
         przystanekRepo.save(przystanek);
     }
 
@@ -32,7 +35,10 @@ public class PrzystankiSerwis {
         else {
             PrzystankiModel przystanek = optionalPrzystanek.get();
             przystanek.setNazwa(updatedPrzystanek.getNazwa());
-            przystanek.setWspolrzedneLokalizacji(updatedPrzystanek.getWspolrzedneLokalizacji());
+            przystanek.setLokalizacja(updatedPrzystanek.getLokalizacja());
+            // Nie aktualizuje daty utworzenia przystanku, bo jest niezmienialna
+            przystanek.setDataEdycji(Timestamp.valueOf(LocalDateTime.now()));
+            przystanek.setUwagi(updatedPrzystanek.getUwagi());
             przystanekRepo.save(przystanek);
         }
     }

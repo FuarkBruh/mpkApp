@@ -2,6 +2,8 @@ package com.example.mpkApp.modele;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "przystanki")
 public class PrzystankiModel {
@@ -10,7 +12,10 @@ public class PrzystankiModel {
     @SequenceGenerator(name = "przystanki_id_gen", sequenceName = "przystanki_id_seq", allocationSize = 1)
     private Integer id;
     private String nazwa;
-    private String wspolrzedneLokalizacji;
+    private String Lokalizacja;
+    private Timestamp dataDodania;
+    private Timestamp dataEdycji;
+    private String uwagi;
 
     public PrzystankiModel() {}
 
@@ -30,14 +35,35 @@ public class PrzystankiModel {
         this.nazwa = nazwa;
     }
 
-    public String getWspolrzedneLokalizacji() {
-        return wspolrzedneLokalizacji;
+    public String getLokalizacja() {
+        return Lokalizacja;
     }
 
-    public void setWspolrzedneLokalizacji(String wspolrzedne_lokalizacji) {
-        this.wspolrzedneLokalizacji = wspolrzedne_lokalizacji;
+    public void setLokalizacja(String wspolrzedne_lokalizacji) {
+        this.Lokalizacja = wspolrzedne_lokalizacji;
     }
 
+    public Timestamp getDataDodania() {
+        return dataDodania;
+    }
 
+    public void setDataDodania(Timestamp dataDodania) {
+        this.dataDodania = dataDodania;
+    }
 
+    public Timestamp getDataEdycji() {
+        return dataEdycji;
+    }
+
+    public void setDataEdycji(Timestamp dataEdycji) {
+        this.dataEdycji = dataEdycji;
+    }
+
+    public String getUwagi() {
+        return uwagi;
+    }
+
+    public void setUwagi(String uwagi) {
+        this.uwagi = uwagi;
+    }
 }

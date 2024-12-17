@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zarządzaj Przystankami MPK</title>
     <link rel="stylesheet" href="/css/zarzadzaniePrzystankami.css?v=1.0">
+    <!-- Dodaj Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
+
 <body>
 <div class="container">
     <h1>Zarządzaj Przystankami MPK</h1>
-
     <!-- Formularz dodawania nowego przystanku -->
     <h2>Dodaj nowy przystanek</h2>
     <form action="/przystanki/dodaj" method="POST">
@@ -19,12 +21,15 @@
         <label for="lokalizacja">Lokalizacja:</label>
         <input type="text" id="lokalizacja" name="lokalizacja" required>
         <br>
-        <br>
         <label for="uwagi">Uwagi:</label>
         <textarea id="uwagi" name="uwagi"></textarea>
         <br>
         <button type="submit">Dodaj Przystanek</button>
     </form>
+
+    <!-- Mapa -->
+    <h2>Mapa przystanków</h2>
+    <div id="map" style="height: 400px;"></div>
 
     <!-- Tabela przystanków -->
     <h2>Lista przystanków</h2>
@@ -44,5 +49,8 @@
     </table>
 </div>
 <script src="/js/zarzadzaniePrzystankami.js" defer></script>
+<!-- Dodaj Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
+
 </html>

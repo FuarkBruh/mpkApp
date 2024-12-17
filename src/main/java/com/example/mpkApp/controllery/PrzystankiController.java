@@ -18,12 +18,12 @@ public class PrzystankiController {
     }
 
     @PostMapping
-    public void newPrzystanek(PrzystankiModel model) {
+    public void newPrzystanek(@RequestBody PrzystankiModel model) {
         przystankiSerwis.newPrzystanek(model);
     }
 
     @PutMapping("/{id}")
-    public void updatePrzystanek(@PathVariable int id, PrzystankiModel model) {
+    public void updatePrzystanek(@PathVariable int id, @RequestBody PrzystankiModel model) {
         przystankiSerwis.updatePrzystanek(id, model);
     }
 
@@ -42,7 +42,7 @@ public class PrzystankiController {
         return przystankiSerwis.findPrzystanekById(id);
     }
 
-    @GetMapping("/{nazwa}")
+    @GetMapping("/by-nazwa/{nazwa}")
     public PrzystankiModel getPrzystanekByNazwa(@PathVariable String nazwa) {
         return przystankiSerwis.findPrzystanekByNazwa(nazwa);
     }
