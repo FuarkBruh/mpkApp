@@ -12,14 +12,6 @@ public class MapowanieLiniiModel {
     private Integer id;
 
     @Column(nullable = false)
-    @NotNull(message = "LiniaId is null!")
-    private Integer liniaId;
-
-    @Column(nullable = false)
-    @NotNull(message = "PrzystanekId is null!")
-    private Integer przystanekId;
-
-    @Column(nullable = false)
     @NotNull(message = "NumerPrzystankuLinii is null!")
     private Integer numerPrzystankuLinii;
 
@@ -27,28 +19,24 @@ public class MapowanieLiniiModel {
     @NotNull(message = "RoznicaCzasu is null!")
     private Integer roznicaCzasu;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "liniaId", referencedColumnName = "id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_linia_id"))
+    private LinieModel linia;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "przystanekId", referencedColumnName = "id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_przystanek_id"))
+    private PrzystankiModel przystanek;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getLiniaId() {
-        return liniaId;
-    }
-
-    public void setLiniaId(Integer linia_id) {
-        this.liniaId = linia_id;
-    }
-
-    public Integer getPrzystanekId() {
-        return przystanekId;
-    }
-
-    public void setPrzystanekId(Integer przystanek_id) {
-        this.przystanekId = przystanek_id;
     }
 
     public Integer getNumerPrzystankuLinii() {
@@ -65,5 +53,21 @@ public class MapowanieLiniiModel {
 
     public void setRoznicaCzasu(Integer roznica_czasu) {
         this.roznicaCzasu = roznica_czasu;
+    }
+
+    public @NotNull LinieModel getLinia() {
+        return linia;
+    }
+
+    public void setLinia(@NotNull LinieModel linia) {
+        this.linia = linia;
+    }
+
+    public @NotNull PrzystankiModel getPrzystanek() {
+        return przystanek;
+    }
+
+    public void setPrzystanek(@NotNull PrzystankiModel przystanek) {
+        this.przystanek = przystanek;
     }
 }

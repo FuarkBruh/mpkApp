@@ -2,7 +2,6 @@ package com.example.mpkApp.modele;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.sql.Timestamp;
 
@@ -14,15 +13,7 @@ public class KursyModel {
     @SequenceGenerator(name = "kursy_id_gen", sequenceName = "kursy_id_seq", allocationSize = 1)
     private Integer id;
 
-    @Column(nullable = false)
-    @NotNull(message = "TramwajId is null!")
-    private Integer tramwajId;
-
-    @Column(nullable = false)
-    @NotNull(message = "LiniaId is null!")
-    private Integer liniaId;
-
-    @Column(nullable = false)
+    @Column(nullable = false, name = "czas_odjazdu_z_petli")
     @NotNull(message = "CzasOdjazduZPetli is null!")
     private Timestamp czasOdjazduZPetli;
 
@@ -34,44 +25,37 @@ public class KursyModel {
     @NotNull(message = "NastepnyPrzystanek is null!")
     private Integer nastepnyPrzystanek;
 
-    //Klucze obce
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "tramwajId", referencedColumnName = "id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_tramwaj_id"))
+    private TramwajeModel tramwaje;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "liniaId", referencedColumnName = "id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_linia_id"))
+    private LinieModel linia;
 
     public KursyModel() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public int getTramwajId() {
-        return tramwajId;
-    }
-
-    public void setTramwajId(Integer tramwaj_id) {
-        this.tramwajId = tramwaj_id;
-    }
-
-    public int getLiniaId() {
-        return liniaId;
-    }
-
-    public void setLiniaId(Integer linia_id) {
-        this.liniaId = linia_id;
     }
 
     public Timestamp getCzasOdjazduZPetli() {
         return czasOdjazduZPetli;
     }
 
-    public void setCzasOdjazduZPetli(Timestamp czas_odjazdu) {
-        this.czasOdjazduZPetli = czas_odjazdu;
+    public void setCzasOdjazduZPetli(Timestamp czasOdjazduZPetli) {
+        this.czasOdjazduZPetli = czasOdjazduZPetli;
     }
 
-    public int getOpoznienie() {
+    public Integer getOpoznienie() {
         return opoznienie;
     }
 
@@ -79,11 +63,27 @@ public class KursyModel {
         this.opoznienie = opoznienie;
     }
 
-    public int getNastepnyPrzystanek() {
+    public Integer getNastepnyPrzystanek() {
         return nastepnyPrzystanek;
     }
 
-    public void setNastepnyPrzystanek(Integer nastepny_przystanek) {
-        this.nastepnyPrzystanek = nastepny_przystanek;
+    public void setNastepnyPrzystanek(Integer nastepnyPrzystanek) {
+        this.nastepnyPrzystanek = nastepnyPrzystanek;
+    }
+
+    public TramwajeModel getTramwaje() {
+        return tramwaje;
+    }
+
+    public void setTramwaje(TramwajeModel tramwaje) {
+        this.tramwaje = tramwaje;
+    }
+
+    public LinieModel getLinia() {
+        return linia;
+    }
+
+    public void setLinia(LinieModel linia) {
+        this.linia = linia;
     }
 }

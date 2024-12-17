@@ -33,9 +33,9 @@ public class KursySerwis {
             KursyModel kurs = optionalKurs.get();
             kurs.setCzasOdjazduZPetli(updatedKurs.getCzasOdjazduZPetli());
             kurs.setOpoznienie(updatedKurs.getOpoznienie());
-            kurs.setLiniaId(updatedKurs.getLiniaId());
-            kurs.setTramwajId(updatedKurs.getTramwajId());
             kurs.setNastepnyPrzystanek(updatedKurs.getNastepnyPrzystanek());
+            kurs.setTramwaje(updatedKurs.getTramwaje());
+            kurs.setLinia(updatedKurs.getLinia());
             kursyRepo.save(kurs);
         }
     }

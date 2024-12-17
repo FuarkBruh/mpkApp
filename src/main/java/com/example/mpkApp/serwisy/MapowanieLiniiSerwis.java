@@ -33,9 +33,9 @@ public class MapowanieLiniiSerwis {
             MapowanieLiniiModel mapa = opt.get();
             mapa.setId(updatedMap.getId());
             mapa.setNumerPrzystankuLinii(updatedMap.getNumerPrzystankuLinii());
-            mapa.setPrzystanekId(updatedMap.getPrzystanekId());
             mapa.setRoznicaCzasu(updatedMap.getRoznicaCzasu());
-            mapa.setNumerPrzystankuLinii(updatedMap.getNumerPrzystankuLinii());
+            mapa.setLinia(updatedMap.getLinia());
+            mapa.setPrzystanek(updatedMap.getPrzystanek());
             mapowanieLiniiRepo.save(mapa);
         }
     }
