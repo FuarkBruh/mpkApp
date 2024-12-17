@@ -31,7 +31,8 @@ public class PrzystankiSerwis {
         }
         else {
             PrzystankiModel przystanek = optionalPrzystanek.get();
-
+            przystanek.setNazwa(updatedPrzystanek.getNazwa());
+            przystanek.setWspolrzedneLokalizacji(updatedPrzystanek.getWspolrzedneLokalizacji());
             przystanekRepo.save(przystanek);
         }
     }
