@@ -23,6 +23,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/login").permitAll() // Dostęp do formularza logowania
                         .requestMatchers("/adminStrona").hasRole("ADMINISTRATOR") // Tylko użytkownicy z rolą ADMINISTRATOR mogą zobaczyć stronę adminStrona
+                        .requestMatchers("/zarzadzaniePojazdami").hasRole("ADMINISTRATOR")
+                        .requestMatchers("/zarzadzaniePrzystankami").hasRole("ADMINISTRATOR")
                         .anyRequest().permitAll() // Inne strony są dostępne publicznie
                 )
                 .formLogin((form) -> form
