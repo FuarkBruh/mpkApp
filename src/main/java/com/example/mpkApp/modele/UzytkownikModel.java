@@ -1,6 +1,7 @@
 package com.example.mpkApp.modele;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table (name = "uzytkownik")
@@ -9,9 +10,19 @@ public class UzytkownikModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uzytkownik_id_gen")
     @SequenceGenerator(name = "uzytkownik_id_gen", sequenceName = "uzytkownik_id_seq", allocationSize = 1)
     Integer id;
-    String email;
-    String haslo;
-    String rola;
+
+    @Column(nullable = false, unique = true)
+    @NotNull(message = "Email can't be null")
+    private String email;
+
+    @Column(nullable = false)
+    @NotNull(message = "Haslo can't be null")
+    private String haslo;
+
+    @Column(nullable = false)
+    @NotNull(message = "Rola can't be null")
+    private String rola;
+
 
     public Integer getId() {
         return id;

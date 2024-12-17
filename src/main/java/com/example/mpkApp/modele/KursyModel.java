@@ -1,6 +1,8 @@
 package com.example.mpkApp.modele;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.sql.Timestamp;
 
@@ -12,14 +14,26 @@ public class KursyModel {
     @SequenceGenerator(name = "kursy_id_gen", sequenceName = "kursy_id_seq", allocationSize = 1)
     private Integer id;
 
+    @Column(nullable = false)
+    @NotNull(message = "TramwajId is null!")
     private Integer tramwajId;
 
-    @Column(name = "linia_id")
+    @Column(nullable = false)
+    @NotNull(message = "LiniaId is null!")
     private Integer liniaId;
 
+    @Column(nullable = false)
+    @NotNull(message = "CzasOdjazduZPetli is null!")
     private Timestamp czasOdjazduZPetli;
+
+    @Column(nullable = false)
+    @NotNull(message = "Opoznienie is null!")
     private Integer opoznienie;
+
+    @Column(nullable = false)
+    @NotNull(message = "NastepnyPrzystanek is null!")
     private Integer nastepnyPrzystanek;
+
 
     public KursyModel() {}
 

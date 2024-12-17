@@ -13,21 +13,26 @@ public class TramwajeModel {
     @SequenceGenerator(name = "tramwaj_id_gen", sequenceName = "tramwaje_id_seq", allocationSize = 1)
     private Integer id;
 
+    @Column(nullable = false)
     @NotNull(message = "model Can't be null")
     private String model;
 
+    @Column(nullable = false)
     @NotNull(message = "numerBoczny Can't be null")
     private String numerBoczny;
 
+    @Column(nullable = false)
     @Min(value = 1900, message = "Invalid year of production")
     @Max(value = 2100, message = "Invalid year of production")
     @NotNull(message = "Can't be null")
     private Integer rokProdukcji;
 
+    @Column(nullable = false)
     @Min(value = 0, message = "Invalid pojemnosc")
-    @NotNull(message = "pojemnosc Can't be null")
+    @NotNull(message = "Pojemnosc can't be null")
     private Integer pojemnosc;
 
+    @Column
     private String uwagi;
 
     public TramwajeModel() {}

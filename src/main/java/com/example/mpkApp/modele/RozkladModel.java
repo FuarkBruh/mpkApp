@@ -1,6 +1,7 @@
 package com.example.mpkApp.modele;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.sql.Timestamp;
 
@@ -11,7 +12,13 @@ public class RozkladModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rozklad_id_gen")
     @SequenceGenerator(name = "rozklad_id_gen", sequenceName = "rozklad_id_seq", allocationSize = 1)
     private Integer id;
+
+    @Column(nullable = false)
+    @NotNull(message = "NumerLinii is null!")
     private Integer numerLinii;
+
+    @Column(nullable = false)
+    @NotNull(message = "CzasStartu is null!")
     private Timestamp czasStartu;
 
     public Integer getId() {

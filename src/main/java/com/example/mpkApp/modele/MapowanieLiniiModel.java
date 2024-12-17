@@ -11,17 +11,22 @@ public class MapowanieLiniiModel {
     @SequenceGenerator(name = "mapowanie_Linii_id_gen", sequenceName = "mapowanie_Linii_id_seq", allocationSize = 1)
     private Integer id;
 
-    @NotNull
+    @Column(nullable = false)
+    @NotNull(message = "LiniaId is null!")
     private Integer liniaId;
 
-    @NotNull
+    @Column(nullable = false)
+    @NotNull(message = "PrzystanekId is null!")
     private Integer przystanekId;
 
-    @NotNull
+    @Column(nullable = false)
+    @NotNull(message = "NumerPrzystankuLinii is null!")
     private Integer numerPrzystankuLinii;
 
-    @NotNull
+    @Column(nullable = false)
+    @NotNull(message = "RoznicaCzasu is null!")
     private Integer roznicaCzasu;
+
 
     public Integer getId() {
         return id;

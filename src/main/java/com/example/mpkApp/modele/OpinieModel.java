@@ -1,6 +1,7 @@
 package com.example.mpkApp.modele;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.sql.Timestamp;
 
@@ -11,11 +12,27 @@ public class OpinieModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "opinie_id_gen")
     @SequenceGenerator(name = "opinie_id_gen", sequenceName = "opinie_id_seq", allocationSize = 1)
     private Integer id;
+
+    @Column
+    @NotNull(message = "IdUzytkownika is null!")
     private Integer idUzytkownika;
+
+    @Column
+    @NotNull(message = "NumerLinii is null!")
     private String numerLinii;
+
+    @Column
+    @NotNull(message = "NumerBoczny is null!")
     private String numerBoczny;
+
+    @Column(nullable = false)
+    @NotNull(message = "Godzina is null!")
     private Timestamp godzina;
+
+    @Column(nullable = false)
+    @NotNull(message = "TrescOpinii is null!")
     private String trescOpinii;
+
 
     public OpinieModel() {}
 
