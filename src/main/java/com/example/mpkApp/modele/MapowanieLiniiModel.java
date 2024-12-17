@@ -27,7 +27,6 @@ public class MapowanieLiniiModel {
     @NotNull(message = "RoznicaCzasu is null!")
     private Integer roznicaCzasu;
 
-
     public Integer getId() {
         return id;
     }

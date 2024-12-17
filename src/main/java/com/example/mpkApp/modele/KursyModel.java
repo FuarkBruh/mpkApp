@@ -34,6 +34,8 @@ public class KursyModel {
     @NotNull(message = "NastepnyPrzystanek is null!")
     private Integer nastepnyPrzystanek;
 
+    //Klucze obce
+
 
     public KursyModel() {}
 
