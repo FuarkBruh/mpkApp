@@ -1,4 +1,4 @@
-// tramwaje.js
+// TODO: Wykonać ładniejszą stronę przez CSS, zrobić podobnie jak w zarządzaniu przystankami.
 // Funkcja do załadowania tramwajów
 function loadTramwaje() {
     fetch('/api/tramwaje')
