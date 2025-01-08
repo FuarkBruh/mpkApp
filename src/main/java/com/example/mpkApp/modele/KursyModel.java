@@ -27,13 +27,13 @@ public class KursyModel {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "tramwajId", referencedColumnName = "id", nullable = false,
+    @JoinColumn(name = "tramwaj_id", referencedColumnName = "id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_tramwaj_id"))
     private TramwajeModel tramwaje;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "liniaId", referencedColumnName = "id", nullable = false,
+    @JoinColumn(name = "linia_id", referencedColumnName = "id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_linia_id"))
     private LinieModel linia;
 
