@@ -2,7 +2,6 @@ package com.example.mpkApp.modele;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.sql.Timestamp;
 
@@ -20,18 +19,16 @@ public class PrzystankiModel {
 
     @Column(nullable = false, unique = true)
     @NotNull(message = "Lokalizacja is null!")
-    private String Lokalizacja;
+    private String lokalizacja;
 
     @Column(nullable = false)
     @NotNull(message = "DataDodania is null!")
     private Timestamp dataDodania;
 
     @Column
-    @NotNull(message = "DataEdycji is null!")
     private Timestamp dataEdycji;
 
     @Column
-    @NotNull(message = "Uwagi is null!")
     private String uwagi;
 
 
@@ -54,11 +51,11 @@ public class PrzystankiModel {
     }
 
     public String getLokalizacja() {
-        return Lokalizacja;
+        return lokalizacja;
     }
 
     public void setLokalizacja(String wspolrzedne_lokalizacji) {
-        this.Lokalizacja = wspolrzedne_lokalizacji;
+        this.lokalizacja = wspolrzedne_lokalizacji;
     }
 
     public Timestamp getDataDodania() {
