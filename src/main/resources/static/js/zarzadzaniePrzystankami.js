@@ -1,5 +1,4 @@
 // Funkcja do załadowania przystanków i wyświetlenia ich na mapie
-// Funkcja do załadowania przystanków i wyświetlenia ich na mapie
 function zaladujPrzystanki() {
     fetch('/api/przystanki')
         .then(odpowiedz => odpowiedz.json())
@@ -8,10 +7,8 @@ function zaladujPrzystanki() {
             tabelaCialo.innerHTML = ''; // Wyczyść tabelę
 
             dane.forEach(przystanek => {
-                // Zainicjalizuj wiersz
                 const wiersz = document.createElement('tr');
-
-                // Dodaj dane do odpowiednich komórek
+                wiersz.setAttribute('data-id', przystanek.id); // Dodaj atrybut data-id
                 wiersz.innerHTML = `
                     <td>${przystanek.id}</td>
                     <td>${przystanek.nazwa}</td>
@@ -24,46 +21,57 @@ function zaladujPrzystanki() {
                         <button onclick="usunPrzystanek(${przystanek.id})">Usuń</button>
                     </td>
                 `;
-
                 tabelaCialo.appendChild(wiersz);
             });
         })
         .catch(blad => console.error('Błąd podczas ładowania przystanków:', blad));
 }
 
+// Funkcja do edytowania przystanku
+function edytujPrzystanek(id) {
+    const wiersz = document.querySelector(`tr[data-id="${id}"]`);
+    const komorki = wiersz.querySelectorAll('td');
 
+    // Przekształć komórki na inputy
+    komorki[1].innerHTML = `<input type="text" value="${komorki[1].innerText}">`; // Nazwa
+    komorki[2].innerHTML = `<input type="text" value="${komorki[2].innerText}">`; // Lokalizacja
+    komorki[5].innerHTML = `<input type="text" value="${komorki[5].innerText}">`; // Uwagi (opcjonalne)
 
-// Funkcja do zaznaczania lokalizacji na mapie
-function ustawKlikniecieMapy(mapa) {
-    let znacznik; // Zmienna do przechowywania znacznika
-
-    mapa.on('click', function (zdarzenie) {
-        const szerokosc = zdarzenie.latlng.lat;
-        const dlugosc = zdarzenie.latlng.lng;
-
-        // Sprawdzenie, czy znacznik już istnieje, jeśli tak, to go usuwamy
-        if (znacznik) {
-            mapa.removeLayer(znacznik);
-        }
-
-        // Dodanie nowego znacznika w miejscu kliknięcia
-        znacznik = L.marker([szerokosc, dlugosc]).addTo(mapa);
-
-        // Ustawienie wartości lokalizacji w formularzu
-        document.getElementById('lokalizacja').value = `${szerokosc}, ${dlugosc}`;
-    });
+    // Zmień przycisk 'Edytuj' na 'Zapisz'
+    komorki[6].innerHTML = `<button onclick="zapiszPrzystanek(${id})">Zapisz</button>
+                            <button onclick="anulujEdycje(${id})">Anuluj</button>`;
 }
 
-// Funkcja do inicjalizacji mapy
-function inicjalizujMape() {
-    const mapa = L.map('map').setView([51.737623656033456, 19.48979792360597], 13);
+// Funkcja do zapisania edytowanego przystanku
+function zapiszPrzystanek(id) {
+    const wiersz = document.querySelector(`tr[data-id="${id}"]`);
+    const komorki = wiersz.querySelectorAll('td');
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(mapa);
+    // Pobierz nowe wartości z inputów
+    const nazwa = komorki[1].querySelector('input').value;
+    const lokalizacja = komorki[2].querySelector('input').value;
+    const uwagi = komorki[5].querySelector('input').value;
 
-    // Umożliwia zaznaczanie lokalizacji na mapie
-    ustawKlikniecieMapy(mapa);
+    if (nazwa && lokalizacja) {
+        const przystanek = { nazwa, lokalizacja, uwagi };
+
+        fetch(`/api/przystanki/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(przystanek)
+        })
+            .then(() => zaladujPrzystanki()) // Odśwież tabelę po edycji
+            .catch(blad => console.error('Błąd podczas edytowania przystanku:', blad));
+    } else {
+        alert('Wszystkie pola (poza uwagami) muszą być wypełnione.');
+    }
+}
+
+// Funkcja do anulowania edycji
+function anulujEdycje(id) {
+    zaladujPrzystanki(); // Przywróć oryginalne dane przystanku
 }
 
 // Funkcja do usuwania przystanku
@@ -77,36 +85,38 @@ function usunPrzystanek(id) {
     }
 }
 
-// Funkcja do edytowania przystanku
-function edytujPrzystanek(id) {
-    const nazwa = prompt('Podaj nową nazwę przystanku:');
-    const lokalizacja = prompt('Podaj nową lokalizację:');
-    const uwagi = prompt('Podaj nowe uwagi:');
+// Funkcja do zaznaczania lokalizacji na mapie
+function ustawKlikniecieMapy(mapa) {
+    let znacznik;
 
-    if (nazwa && lokalizacja) {
-        const przystanek = { nazwa, lokalizacja, uwagi };
+    mapa.on('click', function (zdarzenie) {
+        const szerokosc = zdarzenie.latlng.lat;
+        const dlugosc = zdarzenie.latlng.lng;
 
-        fetch(`/api/przystanki/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(przystanek)
-        })
-            .then(() => {
-                zaladujPrzystanki(); // Odśwież tabelę po edycji
-            })
-            .catch(blad => console.error('Błąd podczas edytowania przystanku:', blad));
-    } else {
-        alert('Wszystkie pola (poza uwagami) muszą być wypełnione.');
-    }
+        if (znacznik) {
+            mapa.removeLayer(znacznik);
+        }
+
+        znacznik = L.marker([szerokosc, dlugosc]).addTo(mapa);
+        document.getElementById('lokalizacja').value = `${szerokosc}, ${dlugosc}`;
+    });
 }
 
+// Funkcja do inicjalizacji mapy
+function inicjalizujMape() {
+    const mapa = L.map('map').setView([51.737623656033456, 19.48979792360597], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mapa);
+
+    ustawKlikniecieMapy(mapa);
+}
 
 // Obsługa formularza dodawania nowego przystanku
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('form[action="/przystanki/dodaj"]').addEventListener('submit', function (zdarzenie) {
-        zdarzenie.preventDefault(); // Zapobiega przeładowaniu strony
+        zdarzenie.preventDefault();
 
         const daneFormularza = new FormData(this);
         const przystanek = Object.fromEntries(daneFormularza.entries());
@@ -119,14 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify(przystanek)
         })
             .then(() => {
-                this.reset(); // Wyczyszczenie formularza
-                zaladujPrzystanki(); // Odśwież tabelę
+                this.reset();
+                zaladujPrzystanki();
             })
             .catch(blad => console.error('Błąd podczas dodawania przystanku:', blad));
     });
 
-    // Załaduj przystanki po otwarciu strony
     inicjalizujMape();
     zaladujPrzystanki();
 });
-
