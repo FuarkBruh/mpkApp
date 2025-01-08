@@ -1,3 +1,5 @@
+// TODO: Edycja lokalizacji przystanku poprzez mapę (jak będzie czas i chęć)
+
 // Funkcja do załadowania przystanków i wyświetlenia ich na mapie
 function zaladujPrzystanki() {
     fetch('/api/przystanki')
