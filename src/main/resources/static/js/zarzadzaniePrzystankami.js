@@ -1,4 +1,5 @@
 // Funkcja do załadowania przystanków i wyświetlenia ich na mapie
+// Funkcja do załadowania przystanków i wyświetlenia ich na mapie
 function zaladujPrzystanki() {
     fetch('/api/przystanki')
         .then(odpowiedz => odpowiedz.json())
@@ -6,37 +7,31 @@ function zaladujPrzystanki() {
             const tabelaCialo = document.querySelector('table tbody');
             tabelaCialo.innerHTML = ''; // Wyczyść tabelę
 
-            // Zainicjalizuj mapę
-            const mapa = L.map('map').setView([51.737623656033456, 19.48979792360597], 13); // Środkowa lokalizacja mapy
-
-            // Dodaj warstwę mapy OpenStreetMap
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(mapa);
-
-            // Dodaj przystanki do mapy
             dane.forEach(przystanek => {
-                const [szerokosc, dlugosc] = przystanek.lokalizacja.split(',').map(koord => parseFloat(koord.trim()));
-                L.marker([szerokosc, dlugosc]).addTo(mapa)
-                    .bindPopup(`<b>${przystanek.nazwa}</b><br>${przystanek.uwagi || ''}`);
-
-                // Dodaj przystanek do tabeli
+                // Zainicjalizuj wiersz
                 const wiersz = document.createElement('tr');
+
+                // Dodaj dane do odpowiednich komórek
                 wiersz.innerHTML = `
                     <td>${przystanek.id}</td>
                     <td>${przystanek.nazwa}</td>
                     <td>${przystanek.lokalizacja}</td>
+                    <td>${przystanek.dataDodania}</td>
+                    <td>${przystanek.dataEdycji || ''}</td>
                     <td>${przystanek.uwagi || ''}</td>
                     <td>
                         <button onclick="edytujPrzystanek(${przystanek.id})">Edytuj</button>
                         <button onclick="usunPrzystanek(${przystanek.id})">Usuń</button>
                     </td>
                 `;
+
                 tabelaCialo.appendChild(wiersz);
             });
         })
         .catch(blad => console.error('Błąd podczas ładowania przystanków:', blad));
 }
+
+
 
 // Funkcja do zaznaczania lokalizacji na mapie
 function ustawKlikniecieMapy(mapa) {
@@ -98,12 +93,15 @@ function edytujPrzystanek(id) {
             },
             body: JSON.stringify(przystanek)
         })
-            .then(() => zaladujPrzystanki()) // Odśwież tabelę po edycji
+            .then(() => {
+                zaladujPrzystanki(); // Odśwież tabelę po edycji
+            })
             .catch(blad => console.error('Błąd podczas edytowania przystanku:', blad));
     } else {
         alert('Wszystkie pola (poza uwagami) muszą być wypełnione.');
     }
 }
+
 
 // Obsługa formularza dodawania nowego przystanku
 document.addEventListener('DOMContentLoaded', () => {
@@ -131,3 +129,4 @@ document.addEventListener('DOMContentLoaded', () => {
     inicjalizujMape();
     zaladujPrzystanki();
 });
+

@@ -1,3 +1,68 @@
 #map {
     cursor: crosshair;
 }
+
+/* Styl dla kontenera */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styl dla tabeli */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Styl dla nagłówków tabeli */
+th {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Styl dla komórek tabeli */
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    word-wrap: break-word; /* Zapewnia zawijanie długich słów */
+}
+
+/* Styl dla formularza */
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+form button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Mapa */
+#map {
+    margin-top: 20px;
+    border: 2px solid #ddd;
+}
