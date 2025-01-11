@@ -19,8 +19,8 @@ public class LinieSerwis {
     }
 
     @Transactional
-    public void newLinia(LinieModel tramwaj) {
-        linieRepo.save(tramwaj);
+    public void newLinia(LinieModel linie) {
+        linieRepo.save(linie);
     }
 
     @Transactional
@@ -31,7 +31,7 @@ public class LinieSerwis {
         }
         else {
             LinieModel linia = optionalLinia.get();
-            linia.setNumer(updatedLinia.getNumer());
+            linia.setNumerLinii(updatedLinia.getNumerLinii());
             linia.setCalkowityCzasPrzejazdu(updatedLinia.getCalkowityCzasPrzejazdu());
             linieRepo.save(linia);
         }

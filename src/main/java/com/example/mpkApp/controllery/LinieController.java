@@ -18,12 +18,13 @@ public class LinieController {
     }
 
     @PostMapping
-    public void newLinia(LinieModel linia) {
+    public void newLinia(@RequestBody LinieModel linia) {
+        System.out.println(linia.getNumerLinii() + " " + linia.getCalkowityCzasPrzejazdu());
         linieSerwis.newLinia(linia);
     }
 
     @PutMapping("/{id}")
-    public void updateLinia(@PathVariable int id, LinieModel linia) {
+    public void updateLinia(@PathVariable int id, @RequestBody LinieModel linia) {
         linieSerwis.updateLinia(id, linia);
     }
 
@@ -42,7 +43,7 @@ public class LinieController {
         return linieSerwis.getLinie(id);
     }
 
-    @GetMapping("/{numerLinii}")
+    @GetMapping("/numer/{numerLinii}")
     public List<LinieModel> findAllByNumerLinii(@PathVariable String numerLinii) {
         return linieSerwis.findAllByNumerLinii(numerLinii);
     }

@@ -11,7 +11,7 @@ public class LinieModel {
     @SequenceGenerator(name = "linie_id_gen", sequenceName = "linie_id_seq", allocationSize = 1)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @NotNull(message = "NumerLinii is null!")
     private String numerLinii;
 
@@ -29,19 +29,19 @@ public class LinieModel {
         this.id = id;
     }
 
-    public String getNumer() {
+    public @NotNull(message = "NumerLinii is null!") String getNumerLinii() {
         return numerLinii;
     }
 
-    public void setNumer(String numer) {
-        this.numerLinii = numer;
+    public void setNumerLinii(@NotNull(message = "NumerLinii is null!") String numerLinii) {
+        this.numerLinii = numerLinii;
     }
 
-    public int getCalkowityCzasPrzejazdu() {
+    public @NotNull(message = "CalkowityCzasPrzejazdu is null!") Integer getCalkowityCzasPrzejazdu() {
         return calkowityCzasPrzejazdu;
     }
 
-    public void setCalkowityCzasPrzejazdu(int calkowity_czas_przejazdu) {
-        this.calkowityCzasPrzejazdu = calkowity_czas_przejazdu;
+    public void setCalkowityCzasPrzejazdu(@NotNull(message = "CalkowityCzasPrzejazdu is null!") Integer calkowityCzasPrzejazdu) {
+        this.calkowityCzasPrzejazdu = calkowityCzasPrzejazdu;
     }
 }
