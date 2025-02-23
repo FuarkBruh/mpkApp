@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPK ŁÓDŹ</title>
+    <link rel="stylesheet" th:href="@{/css/glowna.css}">
+</head>
+<body>
+<h1>MPK ŁÓDŹ</h1>
+<nav>
+    <ul>
+        <li><a th:href="@{/rozklad}" class="nav-button">Rozkład jazdy</a></li>
+        <li><a th:href="@{/rozkladLive}" class="nav-button">Rozkład jazdy LIVE</a></li>
+        <li><a th:href="@{/opinia}" class="nav-button">Napisz opinie lub skargę</a></li>
+        <li><a th:href="@{/login}" class="nav-button">Logowanie Administracji</a></li>
+    </ul>
+</nav>
+
+<footer>
+    <p>&copy; Kamil Dorszewski 2024</p>
+</footer>
+<script th:src="@{/js/glowna.js}"></script>
+</body>
+</html>

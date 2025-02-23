@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Opinie Pasażerów</title>
+    <link rel="stylesheet" th:href="@{/css/nowaOpinia.css}">
+    <script th:src="@{/js/opinia.js}"></script>
+</head>
+<body>
+<h1>Opinie Pasażerów</h1>
+<div th:each="opinia : ${opinie}">
+    <p><strong>Nick:</strong> <span th:text="${opinia.idUzytkownika}"></span></p>
+    <p><strong>Numer Linii:</strong> <span th:text="${opinia.numerLinii}"></span></p>
+    <p><strong>Numer Boczny:</strong> <span th:text="${opinia.numerBoczny}"></span></p>
+    <p><strong>Godzina:</strong> <span th:text="${opinia.godzina}"></span></p>
+    <p><strong>Treść Opinii:</strong> <span th:text="${opinia.trescOpinii}"></span></p>
+    <hr>
+</div>
+</body>
+</html>
