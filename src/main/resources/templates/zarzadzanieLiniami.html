@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarządzanie Liniami MPK</title>
+    <link rel="stylesheet" th:href="@{/css/zarzadzanieLiniami.css}">
+    <script th:src="@{/js/zarzadzanieLiniami.js}" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>Zarządzanie Liniami MPK</h1>
+
+    <!-- Formularz dodawania i edytowania linii -->
+    <h2>Dodaj lub edytuj linię</h2>
+    <form th:action="@{/api/linie}" method="post" th:object="${linie}">
+        <input type="hidden" id="id" th:field="*{id}">
+        <label for="numerLinii">Numer Linii:</label>
+        <input type="text" id="numerLinii" th:field="*{numerLinii}" required>
+        <br>
+        <label for="calkowityCzasPrzejazdu">Całkowity Czas Przejazdu:</label>
+        <input type="number" id="calkowityCzasPrzejazdu" th:field="*{calkowityCzasPrzejazdu}" min="1" required>
+        <br>
+        <button type="submit">Zapisz Linię</button>
+    </form>
+
+    <!-- Tabela linii -->
+    <h2>Lista linii</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Numer Linii</th>
+            <th>Całkowity Czas Przejazdu</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="linia : ${linieList}">
+            <td th:text="${linia.id}"></td>
+            <td th:text="${linia.numerLinii}"></td>
+            <td th:text="${linia.calkowityCzasPrzejazdu}"></td>
+            <td>
+                <button type="button" th:onclick="'editLinia(' + ${linia.id} + ')'">Edytuj</button>
+                <form th:action="@{/api/linie/{id}(id=${linia.id})}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit">Usuń</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Przycisk powrotu do głównego widoku administratora -->
+    <a href="/adminStrona" class="btn-back">Powrót do głównego widoku administratora</a>
+</div>
+</body>
+</html>

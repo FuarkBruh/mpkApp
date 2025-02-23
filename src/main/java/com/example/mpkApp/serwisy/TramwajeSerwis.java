@@ -11,13 +11,12 @@ import java.util.Optional;
 
 @Service
 public class TramwajeSerwis {
-    public final TramwajeRepo tramwajeRepo;
+    private final TramwajeRepo tramwajeRepo;
 
     @Autowired
     public TramwajeSerwis(TramwajeRepo tramwajeRepo) {
         this.tramwajeRepo = tramwajeRepo;
     }
-
 
     @Transactional
     public void newTramwaj(TramwajeModel tramwaj) {
@@ -29,8 +28,7 @@ public class TramwajeSerwis {
         Optional<TramwajeModel> optionalTramwaj = tramwajeRepo.findById(id);
         if (optionalTramwaj.isEmpty()) {
             throw new RuntimeException("Tramwaj not found");
-        }
-        else {
+        } else {
             TramwajeModel tramwaj = optionalTramwaj.get();
             tramwaj.setModel(updatedTramwaj.getModel());
             tramwaj.setNumerBoczny(updatedTramwaj.getNumerBoczny());
@@ -43,22 +41,15 @@ public class TramwajeSerwis {
 
     @Transactional
     public void deleteTramwaj(int id) {
-        if(tramwajeRepo.existsById(id)) {
+        if (tramwajeRepo.existsById(id)) {
             tramwajeRepo.deleteById(id);
-        }
-        else {
+        } else {
             throw new RuntimeException("Tramwaj not found");
         }
     }
 
     public List<TramwajeModel> findAllTramwaje() {
-        if(tramwajeRepo.findAll().isEmpty()) {
-            throw new RuntimeException("No tramwaje found");
-        }
-        else {
-            tramwajeRepo.findAll();
-            return tramwajeRepo.findAll();
-        }
+        return tramwajeRepo.findAll();
     }
 
     public TramwajeModel findTramwajById(int id) {

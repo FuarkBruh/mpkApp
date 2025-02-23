@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wylogowano z admin MPK</title>
+    <link rel="stylesheet" th:href="@{/css/logoutSukces.css}">
+    <script th:src="@{/js/logoutSukces.js}" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>Bezpiecznie wylogowano ze strony administratora MPK!</h1>
+    <form action="/adminStrona" method="GET">
+        <button type="submit">Powrót do strony głównej</button>
+    </form>
+</div>
+</body>
+</html>

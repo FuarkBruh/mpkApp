@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zarządzaj Pojazdami MPK</title>
-  <link rel="stylesheet" href="/css/zarzadzaniePojazdami.css?v=1.0">
+  <link rel="stylesheet" th:href="@{/css/zarzadzaniePojazdami.css}">
+  <script th:src="@{/js/zarzadzaniePojazdami.js}" defer></script>
 </head>
 <body>
 <div class="container">
@@ -47,9 +48,25 @@
     </thead>
     <tbody>
     <!-- Wiersze zostaną wygenerowane dynamicznie przez backend -->
+    <tr th:each="pojazd : ${tramwaje}">
+      <td th:text="${pojazd.id}"></td>
+      <td th:text="${pojazd.model}"></td>
+      <td th:text="${pojazd.numerBoczny}"></td>
+      <td th:text="${pojazd.rokProdukcji}"></td>
+      <td th:text="${pojazd.pojemnosc}"></td>
+      <td th:text="${pojazd.uwagi}"></td>
+      <td>
+        <!-- Akcje takie jak edycja lub usunięcie -->
+        <form th:action="@{'/tramwaje/delete/' + ${pojazd.id}}" method="post" style="display: inline;">
+          <button type="submit">Usuń</button>
+        </form>
+        <form th:action="@{'/tramwaje/update/' + ${pojazd.id}}" method="get" style="display: inline;">
+          <button type="submit">Edytuj</button>
+        </form>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>
-<script src="/js/zarzadzaniePojazdami.js" defer></script>
 </body>
 </html>

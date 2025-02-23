@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zarządzaj Przystankami MPK</title>
-    <link rel="stylesheet" href="/css/zarzadzaniePrzystankami.css?v=1.0">
+    <link rel="stylesheet" th:href="@{/css/zarzadzaniePrzystankami.css}">
+    <script th:src="@{/js/zarzadzaniePrzystankami.js}"></script>
     <!-- Dodaj Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
@@ -50,6 +51,9 @@
         <!-- Wiersze zostaną wygenerowane dynamicznie przez backend -->
         </tbody>
     </table>
+
+    <!-- Przycisk powrotu do głównego widoku administratora -->
+    <a href="/admin" class="btn-back">Powrót do głównego widoku administratora</a>
 </div>
 
 <!-- Skrypt JS -->

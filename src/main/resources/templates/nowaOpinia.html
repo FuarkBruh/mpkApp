@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Opinię</title>
+    <link rel="stylesheet" th:href="@{/css/nowaOpinia.css}">
+</head>
+<body>
+<h1>Dodaj nową opinię</h1>
+<nav>
+    <ul>
+        <li><a th:href="@{/}" class="nav-button">Strona główna</a></li>
+    </ul>
+</nav>
+
+<div>
+    <form th:action="@{/opinia}" th:object="${newOpinia}" method="post">
+        <label for="idUzytkownika">Nick:</label>
+        <input type="text" id="idUzytkownika" th:field="*{idUzytkownika}" required><br>
+
+        <label for="numerLinii">Numer Linii:</label>
+        <input type="text" id="numerLinii" th:field="*{numerLinii}" required><br>
+
+        <label for="numerBoczny">Numer Boczny:</label>
+        <input type="text" id="numerBoczny" th:field="*{numerBoczny}" required><br>
+
+        <label for="godzina">Godzina:</label>
+        <input type="datetime-local" id="godzina" th:field="*{godzina}" required><br>
+
+        <label for="trescOpinii">Treść Opinii:</label>
+        <textarea id="trescOpinii" th:field="*{trescOpinii}" required></textarea><br>
+
+        <button type="submit" class="nav-button">Dodaj Opinię</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; Kamil Dorszewski 2024</p>
+</footer>
+<script th:src="@{/js/nowaOpinia.js}"></script>
+</body>
+</html>

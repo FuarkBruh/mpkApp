@@ -28,8 +28,7 @@ public class OpinieSerwis {
         Optional<OpinieModel> optionalOpinia = opinieRepo.findById(id);
         if (optionalOpinia.isEmpty()) {
             throw new RuntimeException("Opinia not found");
-        }
-        else {
+        } else {
             OpinieModel opinia = optionalOpinia.get();
             opinia.setNumerBoczny(updatedOpinia.getNumerBoczny());
             opinia.setGodzina(updatedOpinia.getGodzina());
@@ -41,30 +40,19 @@ public class OpinieSerwis {
 
     @Transactional
     public void deleteOpinia(Integer id) {
-        if(opinieRepo.existsById(id)) {
+        if (opinieRepo.existsById(id)) {
             opinieRepo.deleteById(id);
-        }
-        else {
+        } else {
             throw new RuntimeException("Opinia not found");
         }
     }
 
     public List<OpinieModel> getAllOpinies() {
-        if(opinieRepo.existsById(0)) {
-            return opinieRepo.findAll();
-        }
-        else {
-            throw new RuntimeException("Opinie not found");
-        }
+        return opinieRepo.findAll();
     }
 
     public OpinieModel getOpiniaById(Integer id) {
-        if(opinieRepo.existsById(id)) {
-            return opinieRepo.findById(id).get();
-        }
-        else {
-            throw new RuntimeException("Opinia not found");
-        }
+        return opinieRepo.findById(id).orElseThrow(() -> new RuntimeException("Opinia not found"));
     }
 
     @Override

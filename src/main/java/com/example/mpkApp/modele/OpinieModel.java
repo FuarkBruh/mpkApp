@@ -3,7 +3,7 @@ package com.example.mpkApp.modele;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "opinie")
@@ -15,7 +15,7 @@ public class OpinieModel {
 
     @Column
     @NotNull(message = "IdUzytkownika is null!")
-    private Integer idUzytkownika;
+    private String idUzytkownika;
 
     @Column
     @NotNull(message = "NumerLinii is null!")
@@ -27,7 +27,7 @@ public class OpinieModel {
 
     @Column(nullable = false)
     @NotNull(message = "Godzina is null!")
-    private Timestamp godzina;
+    private LocalDateTime godzina;
 
     @Column(nullable = false)
     @NotNull(message = "TrescOpinii is null!")
@@ -44,11 +44,11 @@ public class OpinieModel {
         this.id = id;
     }
 
-    public Integer getIdUzytkownika() {
+    public String getIdUzytkownika() {
         return idUzytkownika;
     }
 
-    public void setIdUzytkownika(Integer id_uzytkownika) {
+    public void setIdUzytkownika(String id_uzytkownika) {
         this.idUzytkownika = id_uzytkownika;
     }
 
@@ -68,11 +68,11 @@ public class OpinieModel {
         this.numerBoczny = numer_boczny;
     }
 
-    public Timestamp getGodzina() {
+    public LocalDateTime getGodzina() {
         return godzina;
     }
 
-    public void setGodzina(Timestamp godzina) {
+    public void setGodzina(LocalDateTime godzina) {
         this.godzina = godzina;
     }
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Administracyjna</title>
+    <link rel="stylesheet" th:href="@{/css/adminStrona.css}">
+</head>
+<body>
+<h1>Strona Administracyjna</h1>
+<nav>
+    <ul>
+        <li><a th:href="@{/zarzadzaniePojazdami}" class="nav-button">Zarządzanie Pojazdami</a></li>
+        <li><a th:href="@{/zarzadzaniePrzystankami}" class="nav-button">Zarządzanie Przystankami</a></li>
+        <li><a th:href="@{/zarzadzanieLiniami}" class="nav-button">Zarządzanie Liniami</a></li>
+        <li><a th:href="@{/logout}" class="nav-button">Wyloguj</a></li>
+    </ul>
+</nav>
+
+<footer>
+    <p>&copy; Kamil Dorszewski 2025</p>
+</footer>
+<script th:src="@{/js/adminStrona.js}"></script>
+</body>
+</html>

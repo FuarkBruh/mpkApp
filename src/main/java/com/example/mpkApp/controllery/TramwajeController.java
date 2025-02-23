@@ -3,12 +3,14 @@ package com.example.mpkApp.controllery;
 import com.example.mpkApp.modele.TramwajeModel;
 import com.example.mpkApp.serwisy.TramwajeSerwis;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/tramwaje")
+@Controller
+@RequestMapping("/tramwaje")
 public class TramwajeController {
     public final TramwajeSerwis tramwajeSerwis;
 
@@ -17,28 +19,35 @@ public class TramwajeController {
         this.tramwajeSerwis = tramwajeSerwis;
     }
 
-    @PostMapping
-    public void newTramwaj (@RequestBody TramwajeModel tramwaj) {
-        tramwajeSerwis.newTramwaj(tramwaj);
+    @GetMapping
+    public String getTramwaje(Model model) {
+        List<TramwajeModel> tramwaje = tramwajeSerwis.findAllTramwaje();
+        model.addAttribute("tramwaje", tramwaje);
+        return "zarzadzaniePojazdami";
     }
 
-    @GetMapping
-    public List<TramwajeModel> getAllTramwaje() {
-        return tramwajeSerwis.findAllTramwaje();
+    @PostMapping("/dodaj")
+    public String newTramwaj(@ModelAttribute TramwajeModel tramwaj) {
+        tramwajeSerwis.newTramwaj(tramwaj);
+        return "redirect:/tramwaje";
     }
 
     @GetMapping("/{id}")
-    public TramwajeModel getTramwajeById(@PathVariable Integer id) {
-        return tramwajeSerwis.findTramwajById(id);
+    public String getTramwajById(@PathVariable Integer id, Model model) {
+        TramwajeModel tramwaj = tramwajeSerwis.findTramwajById(id);
+        model.addAttribute("tramwaj", tramwaj);
+        return "tramwajSzczegoly";
     }
 
-    @PutMapping("/{id}")
-    public void updateTramwaje(@PathVariable Integer id,@RequestBody TramwajeModel tramwaj) {
+    @PostMapping("/update/{id}")
+    public String updateTramwaj(@PathVariable Integer id, @ModelAttribute TramwajeModel tramwaj) {
         tramwajeSerwis.updateTramwaj(id, tramwaj);
+        return "redirect:/tramwaje";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteTramwaje(@PathVariable Integer id) {
+    @PostMapping("/delete/{id}")
+    public String deleteTramwaj(@PathVariable Integer id) {
         tramwajeSerwis.deleteTramwaj(id);
+        return "redirect:/tramwaje";
     }
 }

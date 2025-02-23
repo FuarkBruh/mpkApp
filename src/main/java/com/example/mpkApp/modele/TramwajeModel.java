@@ -85,4 +85,3 @@ public class TramwajeModel {
         this.uwagi = uwagi;
     }
 }
-

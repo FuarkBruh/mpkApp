@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <script th:src="@{/js/login.js}"></script>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a th:href="@{/}" class="nav-button">Strona główna</a></li>
+    </ul>
+</nav>
+
+<div class="login-container">
+    <h1>Logowanie administracji</h1>
+    <form method="post" action="/login">
+        <div class="form-row">
+            <label for="username">Nazwa użytkownika:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-row">
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-row">
+            <button type="submit" class="nav-button">Zaloguj się</button>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; Kamil Dorszewski 2024</p>
+</footer>
+<script th:src="@{/js/login.js}"></script>
+</body>
+</html>

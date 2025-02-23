@@ -1,12 +1,66 @@
-#map {
-    cursor: crosshair;
+/* Styl dla całej strony */
+body {
+    background: linear-gradient(to right, #ffcb00 20%, #ffffff 20%, #ffffff 80%, #e5010e 80%);
+    height: 100vh; /* Wysokość całej strony */
+    margin: 0; /* Usunięcie domyślnych marginesów */
+    font-family: Arial, sans-serif;
+    color: black;
 }
 
 /* Styl dla kontenera */
 .container {
-    width: 80%;
-    margin: 0 auto;
     padding: 20px;
+}
+
+/* Styl dla nagłówków */
+h1, h2 {
+    text-align: center;
+}
+
+/* Styl dla formularza */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* Styl dla przycisku */
+button {
+    background-color: #4CAF50; /* Zielony kolor przycisku */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animacja zmiany koloru i efektu kliknięcia */
+}
+
+/* Efekt najechania na przycisk */
+button:hover {
+    background-color: #45a049; /* Ciemniejszy zielony */
+    transform: scale(1.05); /* Powiększenie przycisku */
+}
+
+/* Efekt kliknięcia */
+button:active {
+    background-color: #3e8e41; /* Jeszcze ciemniejszy zielony */
+    transform: scale(0.98); /* Minimalne zmniejszenie przycisku */
 }
 
 /* Styl dla tabeli */
@@ -14,55 +68,49 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: white; /* Białe tło dla tabeli */
 }
 
-/* Styl dla nagłówków tabeli */
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
 th {
-    background-color: #f4f4f4;
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
+    background-color: #f2f2f2;
 }
 
-/* Styl dla komórek tabeli */
-td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-    word-wrap: break-word; /* Zapewnia zawijanie długich słów */
-}
-
-/* Styl dla formularza */
-form {
-    margin-bottom: 20px;
-}
-
-form label {
-    display: block;
-    margin-top: 10px;
-}
-
-form input, form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-}
-
-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #45a049;
-}
-
-/* Mapa */
+/* Styl dla mapy */
 #map {
+    border: 1px solid #ccc;
+    border-radius: 4px;
     margin-top: 20px;
-    border: 2px solid #ddd;
+}
+
+/* Styl dla przycisku powrotu */
+.btn-back {
+    display: block;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff; /* Niebieski kolor przycisku */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animacja zmiany koloru i efektu kliknięcia */
+}
+
+/* Efekt najechania na przycisk powrotu */
+.btn-back:hover {
+    background-color: #0056b3; /* Ciemniejszy niebieski */
+    transform: scale(1.05); /* Powiększenie przycisku */
+}
+
+/* Efekt kliknięcia */
+.btn-back:active {
+    background-color: #004085; /* Jeszcze ciemniejszy niebieski */
+    transform: scale(0.98); /* Minimalne zmniejszenie przycisku */
 }
