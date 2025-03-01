@@ -1,0 +1,8 @@
+Dodawanie pojazdów:
+- zabezpieczenie, aby numerBoczny był unikalny
+- naprawa wyświetlania pojazdów w widoku (nie pojawiają się od razu tylko po dodaniu nowego)
+
+Mapowanie i budowanie rozkład:
+- naprawa klas serwisowych, kontrolerów oraz repozytorium do modeli Przystanki, MapowanieLinii, Kursy
+- przeanalizowanie problemu i implementacja rozwiązania częstotliwości rozkładowej (obecne rozwiązanie:
+wpisywanie z palca godziny rozpoczęcia kursu w modelu Kursy, dodanie do Kursy pola do pojazdów?)
