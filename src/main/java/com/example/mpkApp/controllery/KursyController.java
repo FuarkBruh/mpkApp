@@ -23,17 +23,22 @@ public class KursyController {
     }
 
     @PutMapping("/{id}")
-    public void updateKursy(@PathVariable int id, @RequestBody KursyModel kursyModel) {
+    public void updateKursy(@PathVariable Integer id, @RequestBody KursyModel kursyModel) {
         kursySerwis.updateKursy(id, kursyModel);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteKursy(@PathVariable int id) {
+    public void deleteKursy(@PathVariable Integer id) {
         kursySerwis.deleteKurs(id);
     }
 
+    @GetMapping
+    public List<KursyModel> getAllKursy() {
+        return kursySerwis.findAllKursy();
+    }
+
     @GetMapping("/{linia_id}")
-    public List<KursyModel> findAllKursyByLiniaID(@PathVariable int linia_id) {
+    public List<KursyModel> getAllKursyByLiniaID(@PathVariable Integer linia_id) {
         return kursySerwis.findKursyByLiniaID(linia_id);
     }
 }

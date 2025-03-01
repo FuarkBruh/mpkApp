@@ -24,7 +24,7 @@ public class KursySerwis {
     }
 
     @Transactional
-    public void updateKursy(int id, KursyModel updatedKurs) {
+    public void updateKursy(Integer id, KursyModel updatedKurs) {
         Optional<KursyModel> optionalKurs = kursyRepo.findById(id);
         if (optionalKurs.isEmpty()) {
             throw new RuntimeException("Kurs not found");
@@ -41,7 +41,7 @@ public class KursySerwis {
     }
 
     @Transactional
-    public void deleteKurs(int id) {
+    public void deleteKurs(Integer id) {
         if(kursyRepo.existsById(id)) {
             kursyRepo.deleteById(id);
         }
@@ -50,13 +50,12 @@ public class KursySerwis {
         }
     }
 
-    public List<KursyModel> findKursyByLiniaID(int liniaId) {
-        if(kursyRepo.existsById(liniaId)) {
-            return kursyRepo.findAllByLiniaId(liniaId);
-        }
-        else {
-            throw new RuntimeException("Linia not found");
-        }
+    public List<KursyModel> findKursyByLiniaID(Integer liniaId) {
+        return kursyRepo.findAllByLiniaId(liniaId);
+    }
+
+    public List<KursyModel> findAllKursy() {
+        return kursyRepo.findAll();
     }
 
     @Override
@@ -65,4 +64,5 @@ public class KursySerwis {
                 "kursyRepo=" + kursyRepo +
                 '}';
     }
+
 }
