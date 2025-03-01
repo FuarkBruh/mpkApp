@@ -57,6 +57,6 @@ public class WebSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Zwracamy instancję BCryptPasswordEncoder
+        return new BCryptPasswordEncoder();
     }
 }

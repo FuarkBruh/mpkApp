@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapowanie Linii MPK</title>
+  <link rel="stylesheet" th:href="@{/css/mapowanie.css}">
+  <script th:src="@{/js/mapowanie.js}" defer></script>
+</head>
+<body>
+<div class="container">
+  <h1>Mapowanie Linii MPK</h1>
+
+  <!-- Formularz dodawania mapowania -->
+  <h2>Dodaj nowe mapowanie</h2>
+  <form th:action="@{/api/mapowanieLinii}" method="post" th:object="${mapowanie}">
+    <label for="linia">Linia:</label>
+    <select id="linia" th:field="*{linia.id}" required>
+      <option th:each="linia : ${linieList}" th:value="${linia.id}" th:text="${linia.numerLinii}">Linia</option>
+    </select>
+    <br>
+    <label for="przystanek">Przystanek:</label>
+    <select id="przystanek" th:field="*{przystanek.id}" required>
+      <option th:each="przystanek : ${przystankiList}" th:value="${przystanek.id}" th:text="${przystanek.nazwa}">Przystanek</option>
+    </select>
+    <br>
+    <label for="numerPrzystankuLinii">Numer Przystanku Linii:</label>
+    <input type="number" id="numerPrzystankuLinii" th:field="*{numerPrzystankuLinii}" min="1" required>
+    <br>
+    <label for="roznicaCzasu">Różnica Czasu (minuty):</label>
+    <input type="number" id="roznicaCzasu" th:field="*{roznicaCzasu}" min="0" required>
+    <br>
+    <button type="submit">Zapisz Mapowanie</button>
+  </form>
+
+  <!-- Tabela mapowań -->
+  <h2>Lista mapowań</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Linia</th>
+      <th>Przystanek</th>
+      <th>Numer Przystanku Linii</th>
+      <th>Różnica Czasu (minuty)</th>
+      <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mapowanie : ${mapowanieList}">
+      <td th:text="${mapowanie.id}"></td>
+      <td th:text="${mapowanie.linia.numerLinii}"></td>
+      <td th:text="${mapowanie.przystanek.nazwa}"></td>
+      <td th:text="${mapowanie.numerPrzystankuLinii}"></td>
+      <td th:text="${mapowanie.roznicaCzasu}"></td>
+      <td>
+        <form th:action="@{/api/mapowanieLinii/{id}(id=${mapowanie.id})}" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit">Usuń</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Przycisk powrotu do głównego widoku administratora -->
+  <a href="/adminStrona" class="btn-back">Powrót do głównego widoku administratora</a>
+</div>
+</body>
+</html>

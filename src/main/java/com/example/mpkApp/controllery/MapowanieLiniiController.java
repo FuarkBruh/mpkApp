@@ -18,12 +18,12 @@ public class MapowanieLiniiController {
     }
 
     @PostMapping
-    public void newMapowanieLinii(@RequestBody MapowanieLiniiModel model) {
+    public void newMapowanieLinii(@ModelAttribute MapowanieLiniiModel model) {
         mapowanieLiniiSerwis.newMapowanieLinii(model);
     }
 
     @PutMapping("/{id}")
-    public void updateMapowanieLinii(@PathVariable Integer id, @RequestBody MapowanieLiniiModel model) {
+    public void updateMapowanieLinii(@PathVariable Integer id, @ModelAttribute MapowanieLiniiModel model) {
         mapowanieLiniiSerwis.updateMapowanieLinii(id, model);
     }
 
