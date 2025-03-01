@@ -27,7 +27,7 @@ public class TramwajeSerwis {
     public void updateTramwaj(Integer id, TramwajeModel updatedTramwaj) {
         Optional<TramwajeModel> optionalTramwaj = tramwajeRepo.findById(id);
         if (optionalTramwaj.isEmpty()) {
-            throw new RuntimeException("Tramwaj not found");
+            throw new RuntimeException("Tramwaj not found chosen to update");
         } else {
             TramwajeModel tramwaj = optionalTramwaj.get();
             tramwaj.setModel(updatedTramwaj.getModel());
@@ -40,21 +40,33 @@ public class TramwajeSerwis {
     }
 
     @Transactional
-    public void deleteTramwaj(int id) {
-        if (tramwajeRepo.existsById(id)) {
-            tramwajeRepo.deleteById(id);
+    public void deleteTramwaj(Integer id) {
+        if (!tramwajeRepo.existsById(id)) {
+            throw new RuntimeException("Tramwaj not found with id " + id);
         } else {
-            throw new RuntimeException("Tramwaj not found");
+            tramwajeRepo.deleteById(id);
         }
     }
 
-    public List<TramwajeModel> findAllTramwaje() {
+    public List<TramwajeModel> getAllTramwaje() {
         return tramwajeRepo.findAll();
     }
 
-    public TramwajeModel findTramwajById(int id) {
+    public TramwajeModel getTramwajById(Integer id) {
         return tramwajeRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tramwaj with ID " + id + " not found"));
+                .orElseThrow(() -> new RuntimeException("Tramwaj not found with ID " + id));
+    }
+
+    public Optional<TramwajeModel> getTramwajByNumerBoczny(String numerBoczny) {
+        return tramwajeRepo.findByNumerBoczny(numerBoczny);
+    }
+
+    public List<TramwajeModel> getAllTramwajeByRokProdukcji(Integer rokProdukcji) {
+        return tramwajeRepo.findAllByRokProdukcji(rokProdukcji);
+    }
+
+    public List<TramwajeModel> getAllTramwajeByUwagi(String uwagi) {
+        return tramwajeRepo.findAllByUwagi(uwagi);
     }
 
     @Override
@@ -63,4 +75,6 @@ public class TramwajeSerwis {
                 "tramwajeRepo=" + tramwajeRepo +
                 '}';
     }
+
+
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/tramwaje")
@@ -19,35 +20,45 @@ public class TramwajeController {
         this.tramwajeSerwis = tramwajeSerwis;
     }
 
-    @GetMapping
-    public String getTramwaje(Model model) {
-        List<TramwajeModel> tramwaje = tramwajeSerwis.findAllTramwaje();
-        model.addAttribute("tramwaje", tramwaje);
-        return "zarzadzaniePojazdami";
-    }
-
     @PostMapping("/dodaj")
     public String newTramwaj(@ModelAttribute TramwajeModel tramwaj) {
         tramwajeSerwis.newTramwaj(tramwaj);
         return "redirect:/tramwaje";
     }
 
-    @GetMapping("/{id}")
-    public String getTramwajById(@PathVariable Integer id, Model model) {
-        TramwajeModel tramwaj = tramwajeSerwis.findTramwajById(id);
-        model.addAttribute("tramwaj", tramwaj);
-        return "tramwajSzczegoly";
-    }
-
-    @PostMapping("/update/{id}")
-    public String updateTramwaj(@PathVariable Integer id, @ModelAttribute TramwajeModel tramwaj) {
+    @PutMapping("/{id}")
+    @ResponseBody
+    public void updateTramwaj(@PathVariable Integer id, @RequestBody TramwajeModel tramwaj) {
         tramwajeSerwis.updateTramwaj(id, tramwaj);
-        return "redirect:/tramwaje";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteTramwaj(@PathVariable Integer id) {
+    @DeleteMapping("/{id}")
+    public void deleteTramwaj(@PathVariable Integer id) {
         tramwajeSerwis.deleteTramwaj(id);
-        return "redirect:/tramwaje";
+    }
+
+    @GetMapping
+    public List<TramwajeModel> getAllTramwaje(Model model) {
+        return tramwajeSerwis.getAllTramwaje();
+    }
+
+    @GetMapping("/{id}")
+    public TramwajeModel getTramwajById(@PathVariable Integer id, Model model) {
+        return tramwajeSerwis.getTramwajById(id);
+    }
+
+    @GetMapping("/{numerBoczny}")
+    public Optional<TramwajeModel> getTramwajByNumerBoczny(@PathVariable String numerBoczny) {
+        return tramwajeSerwis.getTramwajByNumerBoczny(numerBoczny);
+    }
+
+    @GetMapping("/{rokProdukcji}")
+    public List<TramwajeModel> getAllTramwajeByRokProdukcji(@PathVariable Integer rokProdukcji) {
+        return tramwajeSerwis.getAllTramwajeByRokProdukcji(rokProdukcji);
+    }
+
+    @GetMapping("/uwagi")
+    public List<TramwajeModel> getAllTramwajeByUwagi(String uwagi) {
+        return tramwajeSerwis.getAllTramwajeByUwagi(uwagi);
     }
 }

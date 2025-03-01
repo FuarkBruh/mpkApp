@@ -20,20 +20,19 @@ public class LinieController {
 
     @PostMapping
     public String newLinia(@ModelAttribute LinieModel linia) {
-        System.out.println(linia.getNumerLinii() + " " + linia.getCalkowityCzasPrzejazdu());
         linieSerwis.newLinia(linia);
         return "redirect:/zarzadzanieLiniami";
     }
 
     @PutMapping("/{id}")
     @ResponseBody
-    public void updateLinia(@PathVariable int id, @RequestBody LinieModel linia) {
+    public void updateLinia(@PathVariable Integer id, @RequestBody LinieModel linia) {
         linieSerwis.updateLinia(id, linia);
     }
 
     @DeleteMapping("/{id}")
     @ResponseBody
-    public void deleteLinia(@PathVariable int id) {
+    public void deleteLinia(@PathVariable Integer id) {
         linieSerwis.deleteLinia(id);
     }
 
@@ -45,7 +44,7 @@ public class LinieController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public LinieModel getLinie(@PathVariable int id) {
+    public LinieModel getLinie(@PathVariable Integer id) {
         return linieSerwis.getLinie(id);
     }
 
