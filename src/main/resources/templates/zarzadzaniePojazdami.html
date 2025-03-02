@@ -13,7 +13,7 @@
 
   <!-- Formularz dodawania nowego pojazdu -->
   <h2>Dodaj nowy pojazd</h2>
-  <form action="/tramwaje/dodaj" method="POST">
+  <form action="/tramwaje" method="POST">
     <label for="model">Model:</label>
     <input type="text" id="model" name="model" required>
     <br>
@@ -30,6 +30,21 @@
     <textarea id="uwagi" name="uwagi"></textarea>
     <br>
     <button type="submit">Dodaj Pojazd</button>
+  </form>
+
+  <!-- Formularz wyszukiwania pojazdów -->
+  <h2>Wyszukaj pojazdy</h2>
+  <form action="/tramwaje/wyszukaj" method="GET">
+    <label for="searchNumerBoczny">Numer Boczny:</label>
+    <input type="text" id="searchNumerBoczny" name="numerBoczny">
+    <br>
+    <label for="searchRokProdukcji">Rok Produkcji:</label>
+    <input type="number" id="searchRokProdukcji" name="rokProdukcji" min="1900" max="2100">
+    <br>
+    <label for="searchUwagi">Uwagi:</label>
+    <input type="text" id="searchUwagi" name="uwagi">
+    <br>
+    <button type="submit">Wyszukaj</button>
   </form>
 
   <!-- Tabela pojazdów -->
@@ -57,16 +72,19 @@
       <td th:text="${pojazd.uwagi}"></td>
       <td>
         <!-- Akcje takie jak edycja lub usunięcie -->
-        <form th:action="@{'/tramwaje/delete/' + ${pojazd.id}}" method="post" style="display: inline;">
-          <button type="submit">Usuń</button>
-        </form>
         <form th:action="@{'/tramwaje/update/' + ${pojazd.id}}" method="get" style="display: inline;">
           <button type="submit">Edytuj</button>
+        </form>
+        <form th:action="@{'/tramwaje/delete/' + ${pojazd.id}}" method="post" style="display: inline;">
+          <button type="submit">Usuń</button>
         </form>
       </td>
     </tr>
     </tbody>
   </table>
+
+  <!-- Przycisk powrotu do głównego widoku administratora -->
+  <a href="/adminStrona" class="btn-back">Powrót do głównego widoku administratora</a>
 </div>
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class TramwajeController {
         this.tramwajeSerwis = tramwajeSerwis;
     }
 
-    @PostMapping("/dodaj")
+    @PostMapping()
     public String newTramwaj(@ModelAttribute TramwajeModel tramwaj) {
         tramwajeSerwis.newTramwaj(tramwaj);
         return "redirect:/tramwaje";
@@ -38,27 +39,62 @@ public class TramwajeController {
     }
 
     @GetMapping
-    public List<TramwajeModel> getAllTramwaje(Model model) {
-        return tramwajeSerwis.getAllTramwaje();
+    public String getAllTramwaje(Model model) {
+        List<TramwajeModel> tramwaje = tramwajeSerwis.getAllTramwaje();
+        model.addAttribute("tramwaje", tramwaje);
+        return "zarzadzaniePojazdami";
     }
 
     @GetMapping("/{id}")
-    public TramwajeModel getTramwajById(@PathVariable Integer id, Model model) {
-        return tramwajeSerwis.getTramwajById(id);
+    public String getTramwajById(@PathVariable Integer id, Model model) {
+        TramwajeModel tramwaj = tramwajeSerwis.getTramwajById(id);
+        model.addAttribute("tramwaj", tramwaj);
+        return "zarzadzaniePojazdami";
     }
 
-    @GetMapping("/{numerBoczny}")
-    public Optional<TramwajeModel> getTramwajByNumerBoczny(@PathVariable String numerBoczny) {
-        return tramwajeSerwis.getTramwajByNumerBoczny(numerBoczny);
+    @GetMapping("/numerBoczny/{numerBoczny}")
+    public String getTramwajByNumerBoczny(@PathVariable String numerBoczny, Model model) {
+        Optional<TramwajeModel> tramwaj = tramwajeSerwis.getTramwajByNumerBoczny(numerBoczny);
+        model.addAttribute("tramwaj", tramwaj);
+        return "zarzadzaniePojazdami";
     }
 
-    @GetMapping("/{rokProdukcji}")
-    public List<TramwajeModel> getAllTramwajeByRokProdukcji(@PathVariable Integer rokProdukcji) {
-        return tramwajeSerwis.getAllTramwajeByRokProdukcji(rokProdukcji);
+    @GetMapping("/rokProdukcji/{rokProdukcji}")
+    public String getAllTramwajeByRokProdukcji(@PathVariable Integer rokProdukcji, Model model) {
+        List<TramwajeModel> tramwaje = tramwajeSerwis.getAllTramwajeByRokProdukcji(rokProdukcji);
+        model.addAttribute("tramwaje", tramwaje);
+        return "zarzadzaniePojazdami";
     }
 
     @GetMapping("/uwagi")
-    public List<TramwajeModel> getAllTramwajeByUwagi(String uwagi) {
-        return tramwajeSerwis.getAllTramwajeByUwagi(uwagi);
+    public String getAllTramwajeByUwagi(String uwagi, Model model) {
+        List<TramwajeModel> tramwaje = tramwajeSerwis.getAllTramwajeByUwagi(uwagi);
+        model.addAttribute("tramwaje", tramwaje);
+        return "zarzadzaniePojazdami";
+    }
+
+    @GetMapping("/wyszukaj")
+    public String searchTramwaje(
+            @RequestParam(required = false) String numerBoczny,
+            @RequestParam(required = false) Integer rokProdukcji,
+            @RequestParam(required = false) String uwagi,
+            Model model) {
+
+        List<TramwajeModel> tramwaje;
+
+        if (numerBoczny != null && !numerBoczny.isEmpty()) {
+            tramwaje = tramwajeSerwis.getTramwajByNumerBoczny(numerBoczny)
+                    .map(List::of)
+                    .orElse(Collections.emptyList());
+        } else if (rokProdukcji != null) {
+            tramwaje = tramwajeSerwis.getAllTramwajeByRokProdukcji(rokProdukcji);
+        } else if (uwagi != null && !uwagi.isEmpty()) {
+            tramwaje = tramwajeSerwis.getAllTramwajeByUwagi(uwagi);
+        } else {
+            tramwaje = tramwajeSerwis.getAllTramwaje();
+        }
+
+        model.addAttribute("tramwaje", tramwaje);
+        return "zarzadzaniePojazdami";
     }
 }

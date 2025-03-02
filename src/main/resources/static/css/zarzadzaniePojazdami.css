@@ -90,3 +90,28 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Styl dla przycisku powrotu */
+.btn-back {
+    display: block;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff; /* Niebieski kolor przycisku */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animacja zmiany koloru i efektu kliknięcia */
+}
+
+.btn-back:hover {
+    background-color: #0056b3; /* Ciemniejszy niebieski */
+    transform: scale(1.05); /* Powiększenie przycisku */
+}
+
+.btn-back:active {
+    background-color: #004085; /* Jeszcze ciemniejszy niebieski */
+    transform: scale(0.98); /* Minimalne zmniejszenie przycisku */
+}

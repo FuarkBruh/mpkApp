@@ -49,7 +49,9 @@ public class TramwajeSerwis {
     }
 
     public List<TramwajeModel> getAllTramwaje() {
-        return tramwajeRepo.findAll();
+        List<TramwajeModel> tramwaje = tramwajeRepo.findAll();
+        if (tramwaje.isEmpty()) {}
+        return tramwaje;
     }
 
     public TramwajeModel getTramwajById(Integer id) {
@@ -75,6 +77,4 @@ public class TramwajeSerwis {
                 "tramwajeRepo=" + tramwajeRepo +
                 '}';
     }
-
-
 }
