@@ -27,15 +27,23 @@ public class TramwajeController {
         return "redirect:/tramwaje";
     }
 
-    @PutMapping("/{id}")
-    @ResponseBody
-    public void updateTramwaj(@PathVariable Integer id, @RequestBody TramwajeModel tramwaj) {
-        tramwajeSerwis.updateTramwaj(id, tramwaj);
+    @GetMapping("/update/{id}")
+    public String edytujPojazd(@PathVariable Integer id, Model model) {
+        TramwajeModel pojazd = tramwajeSerwis.getTramwajById(id);
+        model.addAttribute("tramwaj", pojazd);
+        return "edytujPojazd";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteTramwaj(@PathVariable Integer id) {
+    @PostMapping("/update/{id}")
+    public String aktualizujPojazd(@PathVariable Integer id, @ModelAttribute TramwajeModel tramwaj) {
+        tramwajeSerwis.updateTramwaj(id, tramwaj);
+        return "redirect:/tramwaje";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteTramwaj(@PathVariable Integer id) {
         tramwajeSerwis.deleteTramwaj(id);
+        return "redirect:/tramwaje";
     }
 
     @GetMapping()
