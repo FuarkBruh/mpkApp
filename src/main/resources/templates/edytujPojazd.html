@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edytuj Pojazd</title>
+  <link rel="stylesheet" th:href="@{/css/dodajPojazd.css}">
+  <script th:src="@{/js/dodajPojazd.js}" defer></script>
+</head>
+<body>
+<div class="container">
+  <h1>Edytuj Pojazd</h1>
+
+  <!-- Formularz edycji pojazdu -->
+  <h2>Edytuj pojazd</h2>
+  <form th:action="@{'/tramwaje/update/' + ${tramwaj.id}}" method="post">
+    <label for="model">Model:</label>
+    <input type="text" id="model" name="model" th:value="${tramwaj.model}" required>
+    <br>
+    <label for="numerBoczny">Numer Boczny:</label>
+    <input type="text" id="numerBoczny" name="numerBoczny" th:value="${tramwaj.numerBoczny}" required>
+    <br>
+    <label for="rokProdukcji">Rok Produkcji:</label>
+    <input type="number" id="rokProdukcji" name="rokProdukcji" th:value="${tramwaj.rokProdukcji}" min="1900" max="2100" required>
+    <br>
+    <label for="pojemnosc">Pojemność:</label>
+    <input type="number" id="pojemnosc" name="pojemnosc" th:value="${tramwaj.pojemnosc}" min="0" required>
+    <br>
+    <label for="uwagi">Uwagi:</label>
+    <textarea id="uwagi" name="uwagi" th:text="${tramwaj.uwagi}"></textarea>
+    <br>
+    <button type="submit">Zapisz zmiany</button>
+  </form>
+</div>
+</body>
+</html>
