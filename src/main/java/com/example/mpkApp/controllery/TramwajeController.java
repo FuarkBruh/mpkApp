@@ -38,7 +38,7 @@ public class TramwajeController {
         tramwajeSerwis.deleteTramwaj(id);
     }
 
-    @GetMapping
+    @GetMapping()
     public String getAllTramwaje(Model model) {
         List<TramwajeModel> tramwaje = tramwajeSerwis.getAllTramwaje();
         model.addAttribute("tramwaje", tramwaje);

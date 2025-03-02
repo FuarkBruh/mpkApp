@@ -10,28 +10,8 @@
 <body>
 <div class="container">
   <h1>Zarządzaj Pojazdami MPK</h1>
-
-  <!-- Formularz dodawania nowego pojazdu -->
-  <h2>Dodaj nowy pojazd</h2>
-  <form action="/tramwaje" method="POST">
-    <label for="model">Model:</label>
-    <input type="text" id="model" name="model" required>
-    <br>
-    <label for="numerBoczny">Numer Boczny:</label>
-    <input type="text" id="numerBoczny" name="numerBoczny" required>
-    <br>
-    <label for="rokProdukcji">Rok Produkcji:</label>
-    <input type="number" id="rokProdukcji" name="rokProdukcji" min="1900" max="2100" required>
-    <br>
-    <label for="pojemnosc">Pojemność:</label>
-    <input type="number" id="pojemnosc" name="pojemnosc" min="0" required>
-    <br>
-    <label for="uwagi">Uwagi:</label>
-    <textarea id="uwagi" name="uwagi"></textarea>
-    <br>
-    <button type="submit">Dodaj Pojazd</button>
-  </form>
-
+  <a href="/adminStrona" class="btn-back">Powrót do głównego widoku administratora</a>
+  <a href="/dodajPojazd" class="btn-back">Dodaj nowy pojazd</a>
   <!-- Formularz wyszukiwania pojazdów -->
   <h2>Wyszukaj pojazdy</h2>
   <form action="/tramwaje/wyszukaj" method="GET">
@@ -82,9 +62,6 @@
     </tr>
     </tbody>
   </table>
-
-  <!-- Przycisk powrotu do głównego widoku administratora -->
-  <a href="/adminStrona" class="btn-back">Powrót do głównego widoku administratora</a>
 </div>
 </body>
 </html>

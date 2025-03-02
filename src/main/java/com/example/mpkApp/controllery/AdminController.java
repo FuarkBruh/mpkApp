@@ -25,6 +25,11 @@ public class AdminController {
         this.mapowanieLiniiSerwis = mapowanieLiniiSerwis;
     }
 
+    @GetMapping("/dodajPojazd")
+    public String dodajPojazd() {
+        return "dodajPojazd";
+    }
+
     @GetMapping("/adminStrona")
     public String adminStrona() {
         return "adminStrona";
